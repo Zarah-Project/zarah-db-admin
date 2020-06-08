@@ -1,0 +1,40 @@
+.LoginBox {
+    min-height: 300px;
+}
+
+.LoginBox :global .ant-card-body {
+    padding: 0;
+}
+
+.LoginForm {
+    padding: 20px;
+}
+
+.LoginInfo {
+    padding: 20px;
+    min-height: 300px;
+    background-color: rgb(0, 33, 64);
+}
+
+.LoginInfo :global .ant-card-body {
+    height: 100%;
+}
+
+.LoginFormik {
+    margin-top: 20px;
+}
+
+.Logo {
+    text-align: center;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.Logo img {
+    max-width: 30%;
+}
+
+.ErrorMessage {
+    margin-top: 10px;
+}

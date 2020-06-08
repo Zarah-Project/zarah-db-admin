@@ -1,0 +1,79 @@
+.FormattedTextArea {}
+
+.FormattedTextArea :global .sun-editor {
+    border-radius: 2px;
+    transition: all 0.3s;
+}
+
+.FormattedTextArea.Disabled :global .sun-editor {
+    border: none;
+}
+
+.FormattedTextArea.Error :global .sun-editor {
+    border-color: #ff4d4f;
+    transition: all 0.3s;
+}
+
+.FormattedTextArea :global .sun-editor:hover {
+    border-color: #40a9ff;
+    transition: all 0.3s;
+}
+
+.FormattedTextArea.Error :global .sun-editor:hover {
+    border-color: #ff4d4f;
+}
+
+.FormattedTextArea :global .sun-editor:focus-within {
+    border-color: rgb(64, 169, 255);
+    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+    transition: all 0.3s;
+}
+
+.FormattedTextArea.Error :global .sun-editor:focus-within {
+    border-color: #ff7875;
+    box-shadow:  0 0 0 2px rgba(255, 77, 79, 0.2);
+    transition: all 0.3s;
+}
+
+.FormattedTextArea :global .sun-editor .se-container .se-toolbar {
+    border-bottom: 1px solid rgb(217, 217, 217);
+    outline: 0;
+}
+
+.FormattedTextArea :global .sun-editor .se-btn-module.se-btn-module-border {
+    border: none;
+    border-radius: 0;
+}
+
+.FormattedTextArea :global .sun-editor .se-menu-list .se-btn {
+    width: 26px;
+    height: 26px;
+    border-radius: 0;
+    color: #5c6873;
+}
+
+.FormattedTextArea :global .sun-editor .se-menu-list .se-btn.active {
+    background-color: #d1d1d1;
+    color: #5c6873;
+}
+
+.FormattedTextArea :global .sun-editor .se-menu-list .se-btn>svg {
+    width: 12px;
+    height: 12px;
+}
+
+.FormattedTextArea.Disabled :global .sun-editor .sun-editor-editable {
+    background-color: #FAFAFA;
+}
+
+.FormattedTextArea :global .sun-editor .sun-editor-editable {
+    padding: 10px;
+}
+
+.FormattedTextArea :global .sun-editor .sun-editor-editable p {
+    margin: 0;
+}
+
+.FormattedTextArea :global .sun-editor .sun-editor-editable li {
+    margin: 0;
+}

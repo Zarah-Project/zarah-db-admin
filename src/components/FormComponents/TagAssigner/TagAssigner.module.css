@@ -1,0 +1,12 @@
+.Input {
+    background: #fff !important;
+    border-style: dashed !important;
+}
+
+.Tag {
+    margin-bottom: 5px !important;
+}
+
+.FormItem {
+    margin-bottom: 10px;
+}
