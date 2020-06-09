@@ -20,7 +20,7 @@
     "formik-antd": "^2.0.1",
     "less": "^3.11.1",
     "less-loader": "^5.0.0",
-    "pdfjs-dist": "^2.3.200",
+    "pdfjs-dist": "^2.4.456",
     "rc-tween-one": "^2.6.8",
     "react": "^16.13.1",
     "react-app-rewired": "^2.1.5",

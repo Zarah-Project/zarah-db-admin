@@ -6,7 +6,7 @@ import '@phuocng/react-pdf-viewer/cjs/react-pdf-viewer.css';
 const PDFBox = ({url, ...props}) => {
   return (
     url ?
-    <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.3.200/build/pdf.worker.min.js">
+    <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.4.456/build/pdf.worker.min.js">
       <div style={{ height: '820px', marginBottom: '20px' }}>
         <Viewer fileUrl={url} />
       </div>
