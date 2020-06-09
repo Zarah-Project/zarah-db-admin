@@ -8,8 +8,8 @@ const AbstractAndNotes = ({values, setFieldValue, action, ...props}) => {
   return (
     <Row gutter={10}>
       <Col md={24} xs={24}>
-        <FormItem label={getLabel('abstract', values)} name={'abstract'}>
-          <FormattedTextArea name={'abstract'} disabled={action === 'view'} />
+        <FormItem label={getLabel('summary', values)} name={'summary'}>
+          <FormattedTextArea name={'summary'} disabled={action === 'view'} />
         </FormItem>
       </Col>
       <Col md={24} xs={24}>

@@ -28,7 +28,7 @@ const fieldLabelConfig = {
   },
   summary: {
     label: 'Overall Summary',
-    access: ['public', 'team', 'private']
+    access: ['team', 'team', 'private']
   },
   keywords: {
     label: 'Other keywords for document',

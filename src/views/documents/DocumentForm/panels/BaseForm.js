@@ -1,21 +1,14 @@
 import React from 'react';
 import {FieldArray} from "formik";
-import {Button, Col, Divider, List, Row} from "antd";
-import {FormItem, Input, Radio} from 'formik-antd';
+import {Button, Col, Divider, Row} from "antd";
+import {FormItem, Input} from 'formik-antd';
 import { CloseOutlined } from '@ant-design/icons';
 import ZoteroSearch from "../../../../components/FormComponents/ZoteroSearch/ZoteroSearch";
 import FormattedTextArea from "../../../../components/FormComponents/FormattedTextArea/FormattedTextArea";
 import TagAssigner from "../../../../components/FormComponents/TagAssigner/TagAssigner";
 import Label from "../../../../components/FormComponents/Label/Label";
 import getLabel from "../../../../utils/getLabel";
-import { FlagTwoTone } from '@ant-design/icons';
 import style from '../DocumentForm.module.css';
-
-const explanation = [
-  <span><FlagTwoTone twoToneColor={'#45a321'}/> Public</span>,
-  <span><FlagTwoTone twoToneColor={'#c8b800'}/> Team</span>,
-  <span><FlagTwoTone twoToneColor={'#ed4600'}/> Private</span>,
-];
 
 const BaseForm = ({values, setFieldValue, action, ...props}) => {
   const dates = values['dates'] ? values['dates'] : [{date_from: '', date_to: ''}];
@@ -127,8 +120,8 @@ const BaseForm = ({values, setFieldValue, action, ...props}) => {
         </div>
       </Col>
       <Col md={24} xs={24}>
-        <FormItem label={getLabel('summary', values)} name={'summary'}>
-          <FormattedTextArea name={'summary'} disabled={action === 'view'} />
+        <FormItem label={getLabel('abstract', values)} name={'abstract'}>
+          <FormattedTextArea name={'abstract'} disabled={action === 'view'} />
         </FormItem>
       </Col>
       <Col span={24}>
