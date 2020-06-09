@@ -20,7 +20,7 @@ const PeopleForm = ({action, formType='simple', recordID, onClose, ...props}) =>
   });
 
   useEffect(() => {
-    if (action === 'edit') {
+    if (action !== 'create') {
       person.read(recordID).then((response) => {
         setInitialData(response.data);
       })
@@ -79,35 +79,51 @@ const PeopleForm = ({action, formType='simple', recordID, onClose, ...props}) =>
                   <Row key={idx} gutter={10} style={{marginBottom: '10px'}}>
                     <Col span={11}>
                       <FormItem name={`other_names[${idx}].first_name`}>
-                        <Input name={`other_names[${idx}].first_name`} placeholder={'First Name'} style={{width: '100%'}}/>
+                        <Input
+                          name={`other_names[${idx}].first_name`}
+                          placeholder={'First Name'}
+                          style={{width: '100%'}}
+                          disabled={action === 'view'}
+                        />
                       </FormItem>
                     </Col>
                     <Col span={11}>
                       <FormItem name={`other_names[${idx}].last_name`}>
-                        <Input name={`other_names[${idx}].last_name`} placeholder={'Last Name'} style={{width: '100%'}}/>
+                        <Input
+                          name={`other_names[${idx}].last_name`}
+                          placeholder={'Last Name'}
+                          style={{width: '100%'}}
+                          disabled={action === 'view'}
+                        />
                       </FormItem>
                     </Col>
                     <Col span={2}>
-                      <Button
-                        type={'secondary'}
-                        onClick={() => {
-                          if (idx > 0) {
-                            arrayHelpers.remove(idx)
-                          }
-                        }}
-                      >
-                        <CloseOutlined/>
-                      </Button>
+                      {
+                        action !== 'view' ?
+                        <Button
+                          type={'secondary'}
+                          onClick={() => {
+                            if (idx > 0) {
+                              arrayHelpers.remove(idx)
+                            }
+                          }}
+                        >
+                          <CloseOutlined/>
+                        </Button> : ''
+                      }
                     </Col>
                   </Row>
                 ))
               }
-              <Button
-                type={'secondary'}
-                onClick={() => onAdd(arrayHelpers)}
-              >
-                Add
-              </Button>
+              {
+                action !== 'view' &&
+                <Button
+                  type={'secondary'}
+                  onClick={() => onAdd(arrayHelpers)}
+                >
+                  Add
+                </Button>
+              }
             </React.Fragment>
           )}
         />
@@ -129,19 +145,19 @@ const PeopleForm = ({action, formType='simple', recordID, onClose, ...props}) =>
           <Row gutter={10}>
             <Col span={12}>
               <FormItem name={'first_name'} label={'First name'}>
-                <Input name={'first_name'} />
+                <Input name={'first_name'} disabled={action === 'view'}/>
               </FormItem>
             </Col>
             <Col span={12}>
               <FormItem name={'last_name'} label={'Last name'}>
-                <Input name={'last_name'} />
+                <Input name={'last_name'} disabled={action === 'view'}/>
               </FormItem>
             </Col>
           </Row>
           <Row gutter={10}>
             <Col span={24}>
               <FormItem name={'notes'} label="Notes">
-                <Input.TextArea rows={4} name={'notes'}/>
+                <Input.TextArea rows={4} name={'notes'} disabled={action === 'view'}/>
               </FormItem>
             </Col>
           </Row>
@@ -150,14 +166,17 @@ const PeopleForm = ({action, formType='simple', recordID, onClose, ...props}) =>
               {renderOtherNames(values)}
             </Col>
           </Row>
-          <Button
-            type="primary"
-            className={style.SubmitButton}
-            loading={loading}
-            onClick={submitForm}
-          >
-            Submit
-          </Button>
+          {
+            action !== 'view' &&
+            <Button
+              type="primary"
+              className={style.SubmitButton}
+              loading={loading}
+              onClick={submitForm}
+            >
+              Submit
+            </Button>
+          }
         </Form>
       )}
     </Formik>

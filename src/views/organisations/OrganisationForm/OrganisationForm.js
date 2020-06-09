@@ -21,7 +21,7 @@ const OrganisationForm = ({action, formType='simple', recordID, onClose, ...prop
   });
 
   useEffect(() => {
-    if (action === 'edit') {
+    if (action !== 'create') {
       organisation.read(recordID).then((response) => {
         setInitialData(response.data);
       })
@@ -68,19 +68,19 @@ const OrganisationForm = ({action, formType='simple', recordID, onClose, ...prop
           <Row gutter={10}>
             <Col span={16}>
               <FormItem name={'name'} label={'Name'}>
-                <Input name={'name'} />
+                <Input name={'name'} disabled={action === 'view'}/>
               </FormItem>
             </Col>
             <Col span={8}>
               <FormItem name={'acronym'} label={'Acronym'}>
-                <Input name={'acronym'} />
+                <Input name={'acronym'} disabled={action === 'view'}/>
               </FormItem>
             </Col>
           </Row>
           <Row gutter={10}>
             <Col span={24}>
               <FormItem name={'notes'} label="Notes">
-                <Input.TextArea rows={4} name={'notes'}/>
+                <Input.TextArea rows={4} name={'notes'} disabled={action === 'view'}/>
               </FormItem>
             </Col>
           </Row>
@@ -93,13 +93,18 @@ const OrganisationForm = ({action, formType='simple', recordID, onClose, ...prop
                 labelField={'form'}
                 placeholder={'- Select organisation form -'}
                 field={'organisation_form'}
+                disabled={action === 'view'}
               />
             </Col>
             {
               values['organisation_form'] === 99 &&
               <Col span={24}>
                 <FormItem name={'organisation_form_text'} >
-                  <Input name={'organisation_form_text'} placeholder={'Organisation Form (Other)'}/>
+                  <Input
+                    name={'organisation_form_text'}
+                    placeholder={'Organisation Form (Other)'}
+                    disabled={action === 'view'}
+                  />
                 </FormItem>
               </Col>
             }
@@ -113,12 +118,17 @@ const OrganisationForm = ({action, formType='simple', recordID, onClose, ...prop
                 labelField={'scale'}
                 placeholder={'- Select organisation form scale -'}
                 field={'organisation_form_scale'}
+                disabled={action === 'view'}
               />
               {
                 values['organisation_form_scale'] === 99 &&
                 <Col span={24}>
                   <FormItem name={'organisation_form_scale_text'} >
-                    <Input name={'organisation_form_scale_text'} placeholder={'Organisation Form Scale (Other)'}/>
+                    <Input
+                      name={'organisation_form_scale_text'}
+                      placeholder={'Organisation Form Scale (Other)'}
+                      disabled={action === 'view'}
+                    />
                   </FormItem>
                 </Col>
               }
@@ -131,25 +141,32 @@ const OrganisationForm = ({action, formType='simple', recordID, onClose, ...prop
                 labelField={'membership'}
                 placeholder={'- Select organisation gendered membership -'}
                 field={'organisation_gendered_membership'}
+                disabled={action === 'view'}
               />
               {
                 values['organisation_gendered_membership'] === 99 &&
                 <Col span={24}>
                   <FormItem name={'organisation_gendered_membership_text'} >
-                    <Input name={'organisation_gendered_membership_text'} placeholder={'Organisation Gendered Membership (Other)'}/>
+                    <Input
+                      name={'organisation_gendered_membership_text'}
+                      placeholder={'Organisation Gendered Membership (Other)'}
+                      disabled={action === 'view'}
+                    />
                   </FormItem>
                 </Col>
               }
             </Col>
           </Row>
-          <Button
-            type="primary"
-            className={style.SubmitButton}
-            loading={loading}
-            onClick={submitForm}
-          >
-            Submit
-          </Button>
+          {action !== 'view' &&
+            <Button
+              type="primary"
+              className={style.SubmitButton}
+              loading={loading}
+              onClick={submitForm}
+            >
+              Submit
+            </Button>
+          }
         </Form>
       )}
     </Formik>

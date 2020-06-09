@@ -99,28 +99,6 @@ const BaseForm = ({values, setFieldValue, action, ...props}) => {
 
   return (
     <Row gutter={10}>
-      <Col md={12} xs={24}>
-        <FormItem label="Privacy options" name={'record_type'} required={true}>
-          <Radio.Group name={'record_type'} defaultValue="default" buttonStyle="solid" disabled={action === 'view'}>
-            <Radio.Button value="default">Public</Radio.Button>
-            <Radio.Button value="team">Team</Radio.Button>
-            <Radio.Button value="individual">Individual</Radio.Button>
-          </Radio.Group>
-        </FormItem>
-      </Col>
-      <Col md={12} xs={24}>
-        <label style={{height: '30px', marginTop: '8px', alignItems: 'center'}}>Visible to</label>
-        <List
-          style={{lineHeight: 2, marginBottom: 0}}
-          grid={{ gutter: 16, column: 4 }}
-          dataSource={explanation}
-          renderItem={item => (
-            <List.Item>
-              {item}
-            </List.Item>
-          )}
-        />
-      </Col>
       <Col md={24} xs={24}>
         <ZoteroSearch
           action={action}

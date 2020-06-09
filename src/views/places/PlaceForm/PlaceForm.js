@@ -15,7 +15,7 @@ const PlaceForm = ({action, formType='simple', recordID, onClose, ...props}) => 
   });
 
   useEffect(() => {
-    if (action === 'edit') {
+    if (action !== 'create') {
       place.read(recordID).then((response) => {
         setInitialData(response.data);
       })
@@ -69,29 +69,39 @@ const PlaceForm = ({action, formType='simple', recordID, onClose, ...props}) => 
                 otherNames.map((otherName, idx) => (
                   <Row key={idx} gutter={10} style={{marginBottom: '10px'}}>
                     <Col span={22}>
-                      <Input name={`other_names[${idx}].place_name`} placeholder={'Place'} style={{width: '100%'}}/>
+                      <Input
+                        name={`other_names[${idx}].place_name`}
+                        placeholder={'Place'}
+                        style={{width: '100%'}}
+                        disabled={action === 'view'}
+                      />
                     </Col>
                     <Col span={2}>
-                      <Button
-                        type={'secondary'}
-                        onClick={() => {
-                          if (idx > 0) {
-                            arrayHelpers.remove(idx)
-                          }
-                        }}
-                      >
-                        <CloseOutlined/>
-                      </Button>
+                      { action !== 'view' ?
+                        <Button
+                          type={'secondary'}
+                          onClick={() => {
+                            if (idx > 0) {
+                              arrayHelpers.remove(idx)
+                            }
+                          }}
+                        >
+                          <CloseOutlined/>
+                        </Button> : ''
+                      }
                     </Col>
                   </Row>
                 ))
               }
-              <Button
-                type={'secondary'}
-                onClick={() => onAdd(arrayHelpers)}
-              >
-                Add
-              </Button>
+              {
+                action !== 'view' &&
+                <Button
+                  type={'secondary'}
+                  onClick={() => onAdd(arrayHelpers)}
+                >
+                  Add
+                </Button>
+              }
             </React.Fragment>
           )}
         />
@@ -113,14 +123,14 @@ const PlaceForm = ({action, formType='simple', recordID, onClose, ...props}) => 
           <Row gutter={10}>
             <Col span={24}>
               <FormItem name={'place_name'} label={'Place'}>
-                <Input name={'place_name'} />
+                <Input name={'place_name'} disabled={action === 'view'} />
               </FormItem>
             </Col>
           </Row>
           <Row gutter={10}>
             <Col span={24}>
               <FormItem name={'notes'} label="Notes">
-                <Input.TextArea rows={4} name={'notes'}/>
+                <Input.TextArea rows={4} name={'notes'} disabled={action === 'view'} />
               </FormItem>
             </Col>
           </Row>

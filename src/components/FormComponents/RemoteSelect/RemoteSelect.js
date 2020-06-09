@@ -3,7 +3,7 @@ import {FormItem, Select} from 'formik-antd'
 
 const { Option } = Select;
 
-const RemoteSelect = ({label, field, serviceClass, placeholder, valueField, labelField, color, subForm, recordName, ...rest}) => {
+const RemoteSelect = ({label, field, serviceClass, placeholder, valueField, labelField, color, subForm, disabled, recordName, ...rest}) => {
   const [options, setOptions] = useState([]);
 
   useEffect(() => {
@@ -27,6 +27,7 @@ const RemoteSelect = ({label, field, serviceClass, placeholder, valueField, labe
           filterOption={false}
           style={{ width: "100%" }}
           labelInValue={false}
+          disabled={disabled}
         >
           {
             options.map((option) => (
