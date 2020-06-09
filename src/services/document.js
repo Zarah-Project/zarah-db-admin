@@ -20,6 +20,10 @@ class Document {
   edit = (recordID, formValues) => {
     return API.put(`/v1/document/${recordID}/`, formValues);
   };
+
+  search = (params, cancelToken) => {
+    return API.get(`/v1/document/search`, {params: params});
+  }
 }
 
 const document = new Document();
