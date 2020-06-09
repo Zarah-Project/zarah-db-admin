@@ -139,9 +139,9 @@ const DocumentForm = ({action, ...props}) => {
               <Form layout={'vertical'} >
                 <PrivacyForm />
                 <Collapse
-                  accordion
+                  accordion={action !== 'view'}
                   bordered={false}
-                  defaultActiveKey={['1',]}
+                  defaultActiveKey={action === 'view' ? ['1', '2', '3',] : ['1',]}
                   expandIconPosition={'right'}
                 >
                   <Panel header={getPanelTitle('base_data', errors)} key="1" className={style.Panel}>
