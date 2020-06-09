@@ -3,6 +3,7 @@ import document from '../../services/document';
 import { FilePond, registerPlugin } from "react-filepond";
 import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
 import "filepond/dist/filepond.min.css";
+import {getAccessToken} from "axios-jwt";
 
 const FileUpload = ({setFieldValue, ...props}) => {
   registerPlugin(FilePondPluginFileValidateType);
@@ -36,6 +37,9 @@ const FileUpload = ({setFieldValue, ...props}) => {
         revert: {
           url: `${baseURL}/v1/document/remove_file/`,
           onload: handleDelete,
+          headers: {
+            'authorization': `Bearer ${getAccessToken()}`
+          }
         }
       }}
     />
