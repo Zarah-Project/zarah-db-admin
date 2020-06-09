@@ -21,6 +21,7 @@ import encodeValues from "./decoders/encodeValues";
 import { FlagTwoTone } from '@ant-design/icons';
 import PDFBox from "../../../components/PDFBox/PDFBox";
 import AbstractAndNotes from "./panels/AbstractAndNotes";
+import PrivacyForm from "./panels/PrivacyForm";
 
 const { Panel } = Collapse;
 
@@ -136,6 +137,7 @@ const DocumentForm = ({action, ...props}) => {
             </Col>
             <Col span={14}>
               <Form layout={'vertical'} >
+                <PrivacyForm />
                 <Collapse
                   accordion
                   bordered={false}
