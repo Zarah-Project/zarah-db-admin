@@ -20,6 +20,7 @@ import decodeValues from "./decoders/decodeValues";
 import encodeValues from "./decoders/encodeValues";
 import { FlagTwoTone } from '@ant-design/icons';
 import PDFBox from "../../../components/PDFBox/PDFBox";
+import AbstractAndNotes from "./panels/AbstractAndNotes";
 
 const { Panel } = Collapse;
 
@@ -192,7 +193,13 @@ const DocumentForm = ({action, ...props}) => {
                       values={values}
                     />
                   </Panel>
-                  <Panel header={<span>Consents <FlagTwoTone twoToneColor={'#c8b800'}/></span>} key="9" className={style.Panel}>
+                  <Panel header="Abstract and notes" key="9" className={style.Panel}>
+                    <AbstractAndNotes
+                      action={action}
+                      values={values}
+                    />
+                  </Panel>
+                  <Panel header={<span>Consents <FlagTwoTone twoToneColor={'#c8b800'}/></span>} key="10" className={style.Panel}>
                     <ConsentSelect
                       action={action}
                       values={values}

@@ -112,7 +112,7 @@ const fieldLabelConfig = {
   },
   additional_research: {
     label: 'Additional research and interpretative notes/ideas',
-    access: ['team', 'team', 'private']
+    access: ['team', 'private', 'private']
   }
 };
 

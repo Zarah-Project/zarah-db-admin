@@ -100,9 +100,9 @@ const BaseForm = ({values, setFieldValue, action, ...props}) => {
   return (
     <Row gutter={10}>
       <Col md={12} xs={24}>
-        <FormItem label="Type" name={'record_type'} required={true}>
+        <FormItem label="Privacy options" name={'record_type'} required={true}>
           <Radio.Group name={'record_type'} defaultValue="default" buttonStyle="solid" disabled={action === 'view'}>
-            <Radio.Button value="default">Default</Radio.Button>
+            <Radio.Button value="default">Public</Radio.Button>
             <Radio.Button value="team">Team</Radio.Button>
             <Radio.Button value="individual">Individual</Radio.Button>
           </Radio.Group>
@@ -149,18 +149,8 @@ const BaseForm = ({values, setFieldValue, action, ...props}) => {
         </div>
       </Col>
       <Col md={24} xs={24}>
-        <FormItem label={getLabel('abstract', values)} name={'abstract'}>
-          <FormattedTextArea name={'abstract'} disabled={action === 'view'} />
-        </FormItem>
-      </Col>
-      <Col md={24} xs={24}>
         <FormItem label={getLabel('summary', values)} name={'summary'}>
           <FormattedTextArea name={'summary'} disabled={action === 'view'} />
-        </FormItem>
-      </Col>
-      <Col md={24} xs={24}>
-        <FormItem label={getLabel('additional_research', values)} name={'additional_research'}>
-          <FormattedTextArea name={'additional_research'} disabled={action === 'view'} />
         </FormItem>
       </Col>
       <Col span={24}>
