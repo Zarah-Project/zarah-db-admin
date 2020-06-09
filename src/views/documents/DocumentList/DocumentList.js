@@ -15,7 +15,6 @@ const DocumentList = () => {
   const { Search } = Input;
 
   useEffect(() => {
-    console.log(params);
     const source = api.CancelToken.source();
     fetchData(params, source.token);
     return () => {
