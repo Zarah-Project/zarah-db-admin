@@ -14,8 +14,10 @@ const OrganisationForm = ({action, formType='simple', recordID, onClose, ...prop
     acronym: '',
     organisation_form: undefined,
     organisation_form_scale: undefined,
+    organisation_gendered_membership: undefined,
     organisation_form_text: '',
-    organisation_form_scale_text: ''
+    organisation_form_scale_text: '',
+    organisation_gendered_membership_text: ''
   });
 
   useEffect(() => {
@@ -83,7 +85,7 @@ const OrganisationForm = ({action, formType='simple', recordID, onClose, ...prop
             </Col>
           </Row>
           <Row gutter={10}>
-            <Col span={12}>
+            <Col span={24}>
               <RemoteSelect
                 label={'Organisation Form'}
                 serviceClass={organisation.selectForms}
@@ -93,7 +95,17 @@ const OrganisationForm = ({action, formType='simple', recordID, onClose, ...prop
                 field={'organisation_form'}
               />
             </Col>
-            <Col span={12}>
+            {
+              values['organisation_form'] === 99 &&
+              <Col span={24}>
+                <FormItem name={'organisation_form_text'} >
+                  <Input name={'organisation_form_text'} placeholder={'Organisation Form (Other)'}/>
+                </FormItem>
+              </Col>
+            }
+          </Row>
+          <Row gutter={10}>
+            <Col span={24}>
               <RemoteSelect
                 label={'Organisation Form Scale'}
                 serviceClass={organisation.selectFormScales}
@@ -102,25 +114,33 @@ const OrganisationForm = ({action, formType='simple', recordID, onClose, ...prop
                 placeholder={'- Select organisation form scale -'}
                 field={'organisation_form_scale'}
               />
+              {
+                values['organisation_form_scale'] === 99 &&
+                <Col span={24}>
+                  <FormItem name={'organisation_form_scale_text'} >
+                    <Input name={'organisation_form_scale_text'} placeholder={'Organisation Form Scale (Other)'}/>
+                  </FormItem>
+                </Col>
+              }
             </Col>
-          </Row>
-          <Row gutter={10}>
-            {
-              values['organisation_form'] === 99 &&
-              <Col span={12}>
-                <FormItem name={'organisation_form_text'} label={'Organisation Form (Other)'}>
-                  <Input name={'organisation_form_text'} />
-                </FormItem>
-              </Col>
-            }
-            {
-              values['organisation_form_scale'] === 99 &&
-              <Col span={12}>
-                <FormItem name={'organisation_form_scale_text'} label={'Organisation Form Scale (Other)'}>
-                  <Input name={'organisation_form_scale_text'} />
-                </FormItem>
-              </Col>
-            }
+            <Col span={24}>
+              <RemoteSelect
+                label={'Organisation Gendered Membership'}
+                serviceClass={organisation.selectGenderedMemberships}
+                valueField={'id'}
+                labelField={'membership'}
+                placeholder={'- Select organisation gendered membership -'}
+                field={'organisation_gendered_membership'}
+              />
+              {
+                values['organisation_gendered_membership'] === 99 &&
+                <Col span={24}>
+                  <FormItem name={'organisation_gendered_membership_text'} >
+                    <Input name={'organisation_gendered_membership_text'} placeholder={'Organisation Gendered Membership (Other)'}/>
+                  </FormItem>
+                </Col>
+              }
+            </Col>
           </Row>
           <Button
             type="primary"

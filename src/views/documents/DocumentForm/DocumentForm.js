@@ -157,32 +157,32 @@ const DocumentForm = ({action, ...props}) => {
                       setFieldValue={setFieldValue}
                     />
                   </Panel>
-                  <Panel header="Activist repertoire" key="3" className={style.Panel}>
-                    <RepertoireActions
+                  <Panel header="Historical Context, Labour Conditions and Living Conditions" key="3" className={style.Panel}>
+                    <HistoricalContext
                       action={action}
                       values={values}
                     />
                   </Panel>
-                  <Panel header="Agendas" key="4" className={style.Panel}>
-                    <Agendas
-                      action={action}
-                      values={values}
-                    />
-                  </Panel>
-                  <Panel header="Effects of activism" key="5" className={style.Panel}>
-                    <ActivismEffects
-                      action={action}
-                      values={values}
-                    />
-                  </Panel>
-                  <Panel header="Labour" key="6" className={style.Panel}>
+                  <Panel header="Labour Relations" key="4" className={style.Panel}>
                     <Labour
                       action={action}
                       values={values}
                     />
                   </Panel>
-                  <Panel header="Historical context" key="7" className={style.Panel}>
-                    <HistoricalContext
+                  <Panel header="Activist repertoire" key="5" className={style.Panel}>
+                    <RepertoireActions
+                      action={action}
+                      values={values}
+                    />
+                  </Panel>
+                  <Panel header="Agendas" key="6" className={style.Panel}>
+                    <Agendas
+                      action={action}
+                      values={values}
+                    />
+                  </Panel>
+                  <Panel header="Effects of activism" key="7" className={style.Panel}>
+                    <ActivismEffects
                       action={action}
                       values={values}
                     />

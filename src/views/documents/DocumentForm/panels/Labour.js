@@ -27,24 +27,6 @@ const Labour = ({values, action, ...props}) => {
           rows={4}
         />
       </Col>
-      <Col span={24}>
-        <CascaderWithExtraOption
-          action={action}
-          label={getLabel('labour_conditions', values)}
-          placeholder={'- Select labour condition -'}
-          category={'labour_conditions'}
-          color={'green'}
-        />
-      </Col>
-      <Col span={24}>
-        <Input name={'explanations.historical_context.id'} hidden={true}/>
-        <FormTextArea
-          action={action}
-          field={'explanations.labour_conditions'}
-          label={getLabel('labour_conditions_explanation', values)}
-          rows={4}
-        />
-      </Col>
     </Row>
   )
 };

@@ -24,6 +24,10 @@ class Organisation {
   selectFormScales = () => {
     return API.get(`/v1/authority/organisation_form_scales/`);
   };
+
+  selectGenderedMemberships = () => {
+    return API.get(`/v1/authority/organisation_gendered_memberships/`);
+  };
 }
 
 const organisation = new Organisation();

@@ -109,7 +109,7 @@ const BaseForm = ({values, setFieldValue, action, ...props}) => {
         </FormItem>
       </Col>
       <Col md={12} xs={24}>
-        <label style={{height: '32px', display: 'inline-flex', alignItems: 'center'}}>Visible to</label>
+        <label style={{height: '30px', marginTop: '8px', alignItems: 'center'}}>Visible to</label>
         <List
           style={{lineHeight: 2, marginBottom: 0}}
           grid={{ gutter: 16, column: 4 }}

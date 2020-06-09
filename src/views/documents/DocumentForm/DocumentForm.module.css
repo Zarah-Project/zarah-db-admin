@@ -16,3 +16,8 @@
     background-color: transparent;
     cursor: text;
 }
+
+:global .ant-form-vertical .ant-form-item-label {
+    margin-top: 8px;
+    padding-bottom: 8px;
+}
