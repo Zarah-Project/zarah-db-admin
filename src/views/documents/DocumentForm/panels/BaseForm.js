@@ -18,6 +18,11 @@ const BaseForm = ({values, setFieldValue, action, ...props}) => {
       name={'dates'}
       render={(arrayHelpers) => (
         <React.Fragment>
+          <Row>
+            <Col span={24}>
+              <span className={style.DateHelpText}>Dates should be entered in the format of: YYYY or YYYY-MM or YYYY-MM-DD</span>
+            </Col>
+          </Row>
           {
             dates.map((date, idx) => (
               <Row key={idx} gutter={10}>
@@ -55,11 +60,7 @@ const BaseForm = ({values, setFieldValue, action, ...props}) => {
               </Row>
             ))
           }
-          <Row>
-            <Col span={24} style={{marginTop: '-10px'}}>
-              <span className={style.DateHelpText}>Dates should be entered in the format of: YYYY or YYYY-MM or YYYY-MM-DD</span>
-            </Col>
-          </Row>
+
           {
             action !== 'view' ?
               <Button
@@ -117,9 +118,9 @@ const BaseForm = ({values, setFieldValue, action, ...props}) => {
         <FormItem label={getLabel('item_type', values)} name={'item_type'}>
           <Input name={'item_type'} disabled={action==='view'} className={style.FormInput}/>
         </FormItem>
-      </Col>
+      </Col>1§§1
       <Col md={24} xs={24}>
-        <div style={{marginBottom: '10px', marginTop: '10px'}}>
+        <div style={{marginTop: '10px'}}>
           <Label label={getLabel('dates', values)} />
           { action !== 'view' ? renderDatesEditForm() : renderDatesViewForm()}
         </div>

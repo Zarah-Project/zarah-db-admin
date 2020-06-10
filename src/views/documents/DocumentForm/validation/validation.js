@@ -7,7 +7,7 @@ const validation = yup.object().shape({
     .of(
       yup.object()
         .shape({
-          date_from: yup.number()
+          date_from: yup.string()
             .required('This field is required'),
         })
     )

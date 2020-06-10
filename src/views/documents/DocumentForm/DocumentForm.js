@@ -77,17 +77,30 @@ const DocumentForm = ({action, ...props}) => {
   const handleSubmit = (values, formik) => {
     setLoading(true);
 
+    const handleError = (error) => {
+      const errors = error.response.data;
+      const {non_field_errors, ...field_errors} = errors;
+      if (field_errors) {
+        formik.setErrors(field_errors)
+      }
+      setLoading(false);
+    };
+
     switch (action) {
       case 'create':
         document.create(encodeValues(values)).then((response) => {
           successAlert();
           props.history.push('/documents');
+        }).catch(error => {
+          handleError(error);
         });
         break;
       case 'edit':
         document.edit(recordID, encodeValues(values)).then((response) => {
           successAlert();
           props.history.push('/documents');
+        }).catch(error => {
+          handleError(error);
         });
         break;
       default:
