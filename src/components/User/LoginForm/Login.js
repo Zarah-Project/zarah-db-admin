@@ -1,6 +1,7 @@
 import React from 'react';
 import {Card, Col, Divider, Layout, Row, Typography} from "antd";
 import LoginForm from "./LoginForm";
+import logo from '../../../assets/image/zarah-logo.png';
 
 import style from './Login.module.css';
 
@@ -20,6 +21,7 @@ const Login = () => {
               </Col>
               <Col lg={12} md={0} sm={0} xs={0} className={style.LoginInfo}>
                 <div className={style.Logo}>
+                  <img alt={'ZARAH'} src={logo}/>
                 </div>
                 <Divider style={{color: '#FFF', marginBottom: '30px'}}><strong>ZARAH</strong> Database</Divider>
                 <Text style={{color: '#FFF'}}>

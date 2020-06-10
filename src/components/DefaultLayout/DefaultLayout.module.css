@@ -1,12 +1,15 @@
 .Logo {
     width: 120px;
-    height: 31px;
-    background: rgba(255, 255, 255, 0.2);
-    margin: 16px 24px 16px 0;
+    height: 48px;
+    margin: 8px 24px 8px 0;
     float: left;
-    line-height: 32px;
+    line-height: 48px;
     color: #DDD;
     text-align: center;
+}
+
+.Logo img {
+    width: 100%;
 }
 
 .Content {

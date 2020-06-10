@@ -5,6 +5,7 @@ import BreadcrumbMenu from "../BreadcrumbMenu/BreadcrumbMenu";
 import {Link, Route, Switch} from "react-router-dom";
 import routes from '../../config/routes';
 import UserProfileMenu from "../User/UserProfileMenu/UserProfileMenu";
+import logo from '../../assets/image/zarah-logo.png';
 
 const { Header, Content, Footer } = Layout;
 
@@ -14,7 +15,7 @@ const DefaultLayout = () => {
       <Header style={{ position: 'fixed', zIndex: 100, width: '100%', padding: '0 25px' }}>
         <Link to={'/'}>
           <div className={style.Logo}>
-            ZARAH LOGO
+            <img alt={'ZARAH'} src={logo}/>
           </div>
         </Link>
         <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
