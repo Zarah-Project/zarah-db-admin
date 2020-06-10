@@ -113,6 +113,14 @@ const fieldLabelConfig = {
   additional_research: {
     label: 'Additional research and interpretative notes/ideas',
     access: ['team', 'private', 'private']
+  },
+  interview_consents: {
+    label: 'Interview consents',
+    access: ['team', 'team', 'team']
+  },
+  document_permissions: {
+    label: 'Document permissions',
+    access: ['team', 'team', 'team']
   }
 };
 

@@ -40,6 +40,7 @@ const decodeValues = (values) => {
     formValues['consents'][key] = {
       id: consent['id'],
       consent: consent['consent'],
+      consent_text: consent['consent_text'],
     }
   });
 

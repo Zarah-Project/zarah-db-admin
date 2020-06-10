@@ -38,7 +38,8 @@ const encodeValues = (values) => {
     formValues['consents'].push({
       id: consents[key]['id'],
       consent_type: key,
-      consent: consents[key]['consent']
+      consent: consents[key]['consent'],
+      consent_text: consents[key]['consent_text']
     })
   });
 

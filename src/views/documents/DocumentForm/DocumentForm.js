@@ -214,7 +214,7 @@ const DocumentForm = ({action, ...props}) => {
                       values={values}
                     />
                   </Panel>
-                  <Panel header={<span>Consents <FlagTwoTone twoToneColor={'#c8b800'}/></span>} key="10" className={style.Panel}>
+                  <Panel header="Interview Consent and Permissions for Documents" key="10" className={style.Panel}>
                     <ConsentSelect
                       action={action}
                       values={values}
