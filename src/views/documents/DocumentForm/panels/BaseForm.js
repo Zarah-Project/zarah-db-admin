@@ -80,11 +80,11 @@ const BaseForm = ({values, setFieldValue, action, ...props}) => {
     dates.map((date, idx) => (
       <Row key={idx} gutter={10}>
         <Col span={24}>
-          <span className={style.ViewField}>
+          <div className={style.ViewField}>
             {date['date_from']}
             {date['date_to'] && ` - ${date['date_to']}`}
             {date['event'] && ` (${date['event']})`}
-          </span>
+          </div>
         </Col>
       </Row>
   )));

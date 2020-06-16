@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Col, Collapse, notification} from "antd";
+import {Alert, Button, Col, Collapse, notification} from "antd";
 import BaseForm from "./panels/BaseForm";
 import AuthorityForm from "./panels/AuthorityForm";
 import style from './DocumentForm.module.css';
@@ -55,6 +55,8 @@ const panelFields = {
 const DocumentForm = ({action, ...props}) => {
   const [loading, setLoading] = useState(false);
   const [initialData, setInitialData] = useState(initialValues);
+  const [errors, setErrors] = useState([]);
+
   const recordID = props.match.params.id;
 
   useEffect(() => {
@@ -85,12 +87,40 @@ const DocumentForm = ({action, ...props}) => {
     });
   };
 
+  const renderErrors = () => {
+    const onErrorClose = () => {
+      setErrors([]);
+    };
+
+    if (errors.length > 0) {
+      const errorDisplay = errors.map((e, idx) => {
+        return (
+          <div key={idx}>{e}</div>
+        )
+      });
+
+      return (
+        <Alert
+          description={errorDisplay}
+          type="error"
+          closable
+          className={style.ErrorAlert}
+          onClose={onErrorClose}
+          message={''}
+        />
+      )
+    }
+  };
+
   const handleSubmit = (values, formik) => {
     setLoading(true);
 
     const handleError = (error) => {
       const errors = error.response.data;
       const {non_field_errors, ...field_errors} = errors;
+      if (non_field_errors) {
+        setErrors(non_field_errors);
+      }
       if (field_errors) {
         formik.setErrors(field_errors)
       }
@@ -174,6 +204,7 @@ const DocumentForm = ({action, ...props}) => {
             </Col>
             <Col span={14}>
               <Form layout={'vertical'} >
+                {renderErrors()}
                 <PrivacyForm action={action} />
                 <Collapse
                   accordion={action !== 'view'}

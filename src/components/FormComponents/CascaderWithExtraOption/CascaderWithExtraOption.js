@@ -143,7 +143,7 @@ const CascaderWithExtraOption = ({label, action, category, placeholder, color, .
       <Field name={`classifications.${category}`}>
         {
           ({form}) => (
-            <div className={style.Tags}>
+            <div className={style.TagsDisabled}>
               {renderAssignedValues(form)}
             </div>
           )

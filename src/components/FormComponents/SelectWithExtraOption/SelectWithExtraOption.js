@@ -137,7 +137,7 @@ const SelectWithExtraOption = ({label, formAction, field, serviceClass, placehol
       <Field name={field}>
         {
           ({form}) => (
-            <div className={style.Tags}>
+            <div className={style.TagsDisabled}>
               {renderAssignedValues(form)}
             </div>
           )

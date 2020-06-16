@@ -123,9 +123,9 @@ const TagAssigner = ({color, label, field, action, ...rest}) => {
               const values = form.values[field];
               if (values) {
                 return (
-                  <span style={{marginLeft: '10px'}}>
+                  <div style={{backgroundColor: '#f5f5f5', padding: '5px 11px'}}>
                     {values.map(value => (value.keyword)).join(', ')}
-                  </span>
+                  </div>
                 )
               } else {
                 return ''
