@@ -118,7 +118,7 @@ const BaseForm = ({values, setFieldValue, action, ...props}) => {
         <FormItem label={getLabel('item_type', values)} name={'item_type'}>
           <Input name={'item_type'} disabled={action==='view'} className={style.FormInput}/>
         </FormItem>
-      </Col>1§§1
+      </Col>
       <Col md={24} xs={24}>
         <div style={{marginTop: '10px'}}>
           <Label label={getLabel('dates', values)} />
