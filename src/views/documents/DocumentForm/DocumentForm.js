@@ -18,10 +18,10 @@ import validation from "./validation/validation";
 import document from "../../../services/document";
 import decodeValues from "./decoders/decodeValues";
 import encodeValues from "./decoders/encodeValues";
-import { FlagTwoTone } from '@ant-design/icons';
 import PDFBox from "../../../components/PDFBox/PDFBox";
 import AbstractAndNotes from "./panels/AbstractAndNotes";
 import PrivacyForm from "./panels/PrivacyForm";
+import { PersistFormikValues } from 'formik-persist-values';
 
 const { Panel } = Collapse;
 
@@ -58,10 +58,21 @@ const DocumentForm = ({action, ...props}) => {
   const recordID = props.match.params.id;
 
   useEffect(() => {
-    if (action === 'edit' || action === 'view') {
-      document.read(recordID).then((response) => {
-        setInitialData(decodeValues(response.data));
-      })
+    switch (action) {
+      case 'view':
+        document.read(recordID).then((response) => {
+          setInitialData(decodeValues(response.data));
+        });
+        break;
+      case 'edit':
+        if (localStorage.getItem(`document-edit-form-${recordID}`) === null) {
+          document.read(recordID).then((response) => {
+            setInitialData(decodeValues(response.data));
+          });
+        }
+        break;
+      default:
+        break;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -90,6 +101,7 @@ const DocumentForm = ({action, ...props}) => {
       case 'create':
         document.create(encodeValues(values)).then((response) => {
           successAlert();
+          localStorage.removeItem(`document-create-form`);
           props.history.push('/documents');
         }).catch(error => {
           handleError(error);
@@ -98,6 +110,7 @@ const DocumentForm = ({action, ...props}) => {
       case 'edit':
         document.edit(recordID, encodeValues(values)).then((response) => {
           successAlert();
+          localStorage.removeItem(`document-edit-form-${recordID}`);
           props.history.push('/documents');
         }).catch(error => {
           handleError(error);
@@ -126,6 +139,17 @@ const DocumentForm = ({action, ...props}) => {
     }
   };
 
+  const persist = () => {
+    switch (action) {
+      case 'create':
+        return <PersistFormikValues name="document-create-form" />;
+      case 'edit':
+        return <PersistFormikValues name={`document-edit-form-${recordID}`} />;
+      default:
+        return '';
+    }
+  };
+
   return (
     <React.Fragment>
       <Formik
@@ -150,7 +174,7 @@ const DocumentForm = ({action, ...props}) => {
             </Col>
             <Col span={14}>
               <Form layout={'vertical'} >
-                <PrivacyForm />
+                <PrivacyForm action={action} />
                 <Collapse
                   accordion={action !== 'view'}
                   bordered={false}
@@ -241,6 +265,7 @@ const DocumentForm = ({action, ...props}) => {
                     Close
                   </Button>
                 </Link>
+                {persist()}
               </Form>
             </Col>
           </React.Fragment>
