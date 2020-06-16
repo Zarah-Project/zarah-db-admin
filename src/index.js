@@ -2,16 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import DefaultLayout from "./components/DefaultLayout/DefaultLayout";
 import "antd/dist/antd.less";
-import { createBrowserHistory } from 'history';
+import history from './utils/history';
 import {Router, Route, Switch, Redirect} from 'react-router-dom';
 import {isLoggedIn} from "axios-jwt";
 import Login from "./components/User/LoginForm/Login";
 import {Provider} from "react-redux";
 import store from './store/store';
 
-const history = createBrowserHistory({
-  basename: process.env.BASE_NAME
-});
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (

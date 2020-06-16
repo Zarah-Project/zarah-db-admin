@@ -4,6 +4,7 @@ import auth from "../../../services/auth";
 import style from "./UserAvatar.module.css";
 import {shallowEqual, useDispatch, useSelector} from "react-redux";
 import setUser from "./actions/setUser";
+import history from "../../../utils/history";
 
 const UserAvatar = ({displayUsername, ...rest}) => {
   const ColorHash = require('color-hash');
@@ -16,6 +17,8 @@ const UserAvatar = ({displayUsername, ...rest}) => {
     if (!user.username) {
       auth.getUser().then((response) => {
         dispatch(setUser(response.data));
+      }).catch((error) => {
+        history.push('/login');
       })
     }
 
