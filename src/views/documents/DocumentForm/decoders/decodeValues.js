@@ -48,15 +48,20 @@ const decodeValues = (values) => {
   formValues['file_url'] = files.length > 0 ? files[0]['file_url'] : '';
 
   // Zotero
-  const zoteroData = JSON.parse(formValues['zotero_data']);
-  formValues['zotero_language'] = zoteroData['language'];
-  formValues['zotero_date'] = zoteroData['date'];
+  if (formValues['zotero_data'] !== '') {
+    const zoteroData = JSON.parse(formValues['zotero_data']);
+    formValues['zotero_language'] = zoteroData.hasOwnProperty('language') ? zoteroData['language'] : '';
+    formValues['zotero_date'] = zoteroData.hasOwnProperty('language') ? zoteroData['date'] : '';
 
-  if (zoteroData.hasOwnProperty('creators')) {
-    const authors = zoteroData['creators'].map((creator) => {
-      return `${creator['firstName']} ${creator['lastName']} (${creator['creatorType']})`
-    });
-    formValues['zotero_author'] = authors.join('; ');
+    formValues['zotero_archive'] = zoteroData.hasOwnProperty('archive') ? zoteroData['archive'] : '';
+    formValues['zotero_loc_archive'] = zoteroData.hasOwnProperty('archiveLocation') ? zoteroData['archiveLocation'] : '';
+
+    if (zoteroData.hasOwnProperty('creators')) {
+      const authors = zoteroData['creators'].map((creator) => {
+        return `${creator['firstName']} ${creator['lastName']} (${creator['creatorType']})`
+      });
+      formValues['zotero_author'] = authors.join('; ');
+    }
   }
 
   return formValues;

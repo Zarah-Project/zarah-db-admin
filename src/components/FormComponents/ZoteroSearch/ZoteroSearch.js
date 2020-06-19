@@ -32,6 +32,9 @@ const ZoteroSearch = ({values, setFieldValue, action, ...props}) => {
     setFieldValue("zotero_language", value['language']);
     setFieldValue("zotero_date", value['date']);
 
+    setFieldValue("zotero_archive", value['archive']);
+    setFieldValue("zotero_loc_archive", value['archiveLocation']);
+
     if (value.hasOwnProperty('creators')) {
       const authors = value['creators'].map((creator) => {
         return `${creator['firstName']} ${creator['lastName']} (${creator['creatorType']})`
