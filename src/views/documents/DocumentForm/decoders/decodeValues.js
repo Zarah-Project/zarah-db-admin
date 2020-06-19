@@ -47,6 +47,18 @@ const decodeValues = (values) => {
   formValues['file_id'] = files.length > 0 ? files[0]['file_id'] : '';
   formValues['file_url'] = files.length > 0 ? files[0]['file_url'] : '';
 
+  // Zotero
+  const zoteroData = JSON.parse(formValues['zotero_data']);
+  formValues['zotero_language'] = zoteroData['language'];
+  formValues['zotero_date'] = zoteroData['date'];
+
+  if (zoteroData.hasOwnProperty('creators')) {
+    const authors = zoteroData['creators'].map((creator) => {
+      return `${creator['firstName']} ${creator['lastName']} (${creator['creatorType']})`
+    });
+    formValues['zotero_author'] = authors.join('; ');
+  }
+
   return formValues;
 };
 

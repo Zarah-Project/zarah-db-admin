@@ -120,6 +120,31 @@ const BaseForm = ({values, setFieldValue, action, ...props}) => {
         </FormItem>
       </Col>
       <Col md={24} xs={24}>
+        <FormItem label={getLabel('zotero_author', values)} name={'zotero_author'}>
+          <Input name={'zotero_author'} disabled={true} className={style.FormInput}/>
+        </FormItem>
+      </Col>
+      <Col md={12} xs={24}>
+        <FormItem label={getLabel('zotero_date', values)} name={'zotero_date'}>
+          <Input name={'zotero_date'} disabled={true} className={style.FormInput}/>
+        </FormItem>
+      </Col>
+      <Col md={12} xs={24}>
+        <FormItem label={getLabel('zotero_language', values)} name={'zotero_language'}>
+          <Input name={'zotero_language'} disabled={true} className={style.FormInput}/>
+        </FormItem>
+      </Col>
+      <Col md={12} xs={24}>
+        <FormItem label={getLabel('zotero_archive', values)} name={'zotero_archive'}>
+          <Input name={'zotero_archive'} disabled={true} className={style.FormInput}/>
+        </FormItem>
+      </Col>
+      <Col md={12} xs={24}>
+        <FormItem label={getLabel('zotero_loc_archive', values)} name={'zotero_loc_archive'}>
+          <Input name={'zotero_loc_archive'} disabled={true} className={style.FormInput}/>
+        </FormItem>
+      </Col>
+      <Col md={24} xs={24}>
         <div style={{marginTop: '10px'}}>
           <Label label={getLabel('dates', values)} />
           { action !== 'view' ? renderDatesEditForm() : renderDatesViewForm()}

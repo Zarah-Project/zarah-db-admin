@@ -28,6 +28,17 @@ const ZoteroSearch = ({values, setFieldValue, action, ...props}) => {
     setFieldValue("item_type", value['itemType']);
     setFieldValue("zotero_id", value['key']);
     setFieldValue("zotero_data", JSON.stringify(value));
+
+    setFieldValue("zotero_language", value['language']);
+    setFieldValue("zotero_date", value['date']);
+
+    if (value.hasOwnProperty('creators')) {
+      const authors = value['creators'].map((creator) => {
+        return `${creator['firstName']} ${creator['lastName']} (${creator['creatorType']})`
+      });
+      setFieldValue("zotero_author", authors.join('; '));
+    }
+
     setZoteroItems([]);
   };
 

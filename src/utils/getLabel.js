@@ -9,7 +9,27 @@ const fieldLabelConfig = {
   zotero_id: {
     label: 'Imported Zotero Record',
     access: ['public', 'public', 'public']
-  } ,
+  },
+  zotero_language: {
+    label: 'Language (Zotero)',
+    access: ['public', 'public', 'public']
+  },
+  zotero_author: {
+    label: 'Author (Zotero)',
+    access: ['public', 'public', 'public']
+  },
+  zotero_date: {
+    label: 'Date (Zotero)',
+    access: ['public', 'public', 'public']
+  },
+  zotero_archive: {
+    label: 'Archive (Zotero)',
+    access: ['public', 'public', 'public']
+  },
+  zotero_loc_archive: {
+    label: 'Archive Location (Zotero)',
+    access: ['public', 'public', 'public']
+  },
   title: {
     label: 'Title',
     access: ['public', 'public', 'public'],
