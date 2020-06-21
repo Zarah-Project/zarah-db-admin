@@ -12,15 +12,15 @@ const FileUpload = ({setFieldValue, ...props}) => {
 
   const handleUpload = (response) => {
     document.store_file(response).then((resp) => {
-      const file = resp.data['file'];
-      setFieldValue('file_id', response);
-      setFieldValue('file_url', `${baseURL}${file}`);
+      const fileID = resp.data['file_id'];
+      setFieldValue('file_id', fileID);
+      setFieldValue('file_url', `${baseURL}/view_file/${fileID}`);
     });
     return response;
   };
 
   const handleDelete = (response) => {
-    setFieldValue('file_id', '');
+    setFieldValue('file_id', undefined);
     setFieldValue('file_url', '');
   };
 

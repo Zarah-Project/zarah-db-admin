@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Alert, Button, Col, Collapse, notification} from "antd";
+import {Alert, Button, Col, Collapse, notification, Row} from "antd";
 import BaseForm from "./panels/BaseForm";
 import AuthorityForm from "./panels/AuthorityForm";
 import style from './DocumentForm.module.css';
@@ -10,7 +10,7 @@ import Labour from "./panels/Labour";
 import HistoricalContext from "./panels/HistoricalContext";
 import NonActivism from "./panels/NonActivism";
 import {Formik} from "formik";
-import {Form} from "formik-antd"
+import {Form, FormItem, Radio} from "formik-antd"
 import ConsentSelect from "./panels/ConsentSelect";
 import FileUpload from "../../../components/FileUpload/FileUpload";
 import {Link} from "react-router-dom";
@@ -87,6 +87,14 @@ const DocumentForm = ({action, ...props}) => {
     });
   };
 
+  const errorAlert = () => {
+    notification.error({
+      duration: 3,
+      message: 'Error!',
+      description: `There was some error trying to save the form! Please correct the errors!`,
+    });
+  };
+
   const renderErrors = () => {
     const onErrorClose = () => {
       setErrors([]);
@@ -134,6 +142,7 @@ const DocumentForm = ({action, ...props}) => {
           localStorage.removeItem(`document-create-form`);
           props.history.push('/documents');
         }).catch(error => {
+          errorAlert();
           handleError(error);
         });
         break;
@@ -143,6 +152,7 @@ const DocumentForm = ({action, ...props}) => {
           localStorage.removeItem(`document-edit-form-${recordID}`);
           props.history.push('/documents');
         }).catch(error => {
+          errorAlert();
           handleError(error);
         });
         break;
@@ -194,13 +204,24 @@ const DocumentForm = ({action, ...props}) => {
           <React.Fragment>
             <Col span={10}>
               <PDFBox
-                url={values['file_url']}
+                fileID={values['file_id']}
               />
               {action !== 'view' &&
                 <FileUpload
                   setFieldValue={setFieldValue}
                 />
               }
+              <Row style={{textAlign: 'center'}}>
+                <Col md={24} xs={24}>
+                  <FormItem label="Privacy options for document reproduction" name={'attachment_type'}>
+                    <Radio.Group name={'attachment_type'} defaultValue="default" buttonStyle="solid" disabled={action === 'view'}>
+                      <Radio.Button value="default">Public</Radio.Button>
+                      <Radio.Button value="team">Team</Radio.Button>
+                      <Radio.Button value="individual">Individual</Radio.Button>
+                    </Radio.Group>
+                  </FormItem>
+                </Col>
+              </Row>
             </Col>
             <Col span={14}>
               <Form layout={'vertical'} >

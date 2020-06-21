@@ -5,6 +5,10 @@ class Document {
     return API.post('/v1/document/store_file/', {file: file_id});
   };
 
+  read_file = (file_id) => {
+    return API.get(`/v1/document/view_file/${file_id}`, {responseType: 'blob'});
+  };
+
   list = (search, cancelToken) => {
     return API.get('/v1/document/', {params: {search: search}, cancelToken: cancelToken});
   };
