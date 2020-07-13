@@ -40,7 +40,7 @@ const HistoricalContext = ({values, action, ...props}) => {
         <Input name={'explanations.labour_conditions.id'} hidden={true}/>
         <FormTextArea
           action={action}
-          field={'explanations.labour_conditions'}
+          field={'explanations.labour_conditions.text'}
           label={getLabel('labour_conditions_explanation', values)}
           rows={4}
         />
@@ -58,7 +58,7 @@ const HistoricalContext = ({values, action, ...props}) => {
         <Input name={'explanations.living_conditions.id'} hidden={true}/>
         <FormTextArea
           action={action}
-          field={'explanations.living_conditions'}
+          field={'explanations.living_conditions.text'}
           label={getLabel('living_conditions_explanation', values)}
           rows={4}
         />
