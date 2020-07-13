@@ -67,11 +67,19 @@ const fieldLabelConfig = {
     access: ['public', 'team', 'team']
   },
   activist_repertoire: {
-    label: 'Activist repertoire',
+    label: 'Action',
     access: ['public', 'team', 'team']
   },
   activist_repertoire_scale: {
     label: 'Scale of Repertoire Actions',
+    access: ['public', 'team', 'team']
+  },
+  format_of_participation: {
+    label: 'Format of Participation',
+    access: ['public', 'team', 'team']
+  },
+  knowledge_production: {
+    label: 'Communication and Knowledge Production',
     access: ['public', 'team', 'team']
   },
   activist_repertoire_explanation: {

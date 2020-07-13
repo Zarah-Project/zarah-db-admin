@@ -260,7 +260,7 @@ const DocumentForm = ({action, ...props}) => {
                       values={values}
                     />
                   </Panel>
-                  <Panel header="Activist repertoire" key="5" className={style.Panel}>
+                  <Panel header="Repertoire" key="5" className={style.Panel}>
                     <RepertoireActions
                       action={action}
                       values={values}

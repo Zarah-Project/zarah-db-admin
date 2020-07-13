@@ -28,6 +28,24 @@ const RepertoireActions = ({values, action, ...props}) => {
           color={'green'}
         />
       </Col>
+      <Col span={12}>
+        <CascaderWithExtraOption
+          action={action}
+          label={getLabel('format_of_participation', values)}
+          category={'format_of_participation'}
+          placeholder={'- Select format of participation -'}
+          color={'red'}
+        />
+      </Col>
+      <Col span={12}>
+        <CascaderWithExtraOption
+          action={action}
+          label={getLabel('knowledge_production', values)}
+          category={'knowledge_production'}
+          placeholder={'- Select activist repertoire scale -'}
+          color={'grey'}
+        />
+      </Col>
       <Col span={24}>
         <Input name={'explanations.activist_repertoire.id'} hidden={true}/>
         <FormTextArea
