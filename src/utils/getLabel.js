@@ -122,6 +122,14 @@ const fieldLabelConfig = {
     label: 'Further Explanation of Labour Conditions',
     access: ['team', 'team', 'team']
   },
+  living_conditions: {
+    label: 'Living Conditions',
+    access: ['public', 'team', 'team']
+  },
+  living_conditions_explanation: {
+    label: 'Further Explanation of Living Conditions',
+    access: ['team', 'team', 'team']
+  },
   historical_context: {
     label: 'Historical Context',
     access: ['public', 'public', 'team']

@@ -37,11 +37,29 @@ const HistoricalContext = ({values, action, ...props}) => {
         />
       </Col>
       <Col span={24}>
-        <Input name={'explanations.historical_context.id'} hidden={true}/>
+        <Input name={'explanations.labour_conditions.id'} hidden={true}/>
         <FormTextArea
           action={action}
           field={'explanations.labour_conditions'}
           label={getLabel('labour_conditions_explanation', values)}
+          rows={4}
+        />
+      </Col>
+      <Col span={24}>
+        <CascaderWithExtraOption
+          action={action}
+          label={getLabel('living_conditions', values)}
+          placeholder={'- Select living condition -'}
+          category={'living_conditions'}
+          color={'red'}
+        />
+      </Col>
+      <Col span={24}>
+        <Input name={'explanations.living_conditions.id'} hidden={true}/>
+        <FormTextArea
+          action={action}
+          field={'explanations.living_conditions'}
+          label={getLabel('living_conditions_explanation', values)}
           rows={4}
         />
       </Col>
