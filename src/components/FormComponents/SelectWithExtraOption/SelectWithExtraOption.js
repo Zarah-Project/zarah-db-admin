@@ -84,8 +84,24 @@ const SelectWithExtraOption = ({label, formAction, field, serviceClass, placehol
     if (values) {
       return (
         values.map((value, idx) => (
-          <Tag key={idx} closable={formAction !== 'view'} color={color} onClose={(e) => onRemoveValue(e, value)}>
-            {value.label}
+          <Tag
+            key={idx}
+            closable={formAction !== 'view'}
+            color={color}
+            onClose={(e) => onRemoveValue(e, value)}
+          >
+            {formAction === 'view' ?
+              <span
+                className={style.Clickable}
+                onClick={
+                  () => {
+                    setAction(formAction);
+                    setSelectedValue({key: value.value});
+                    setDrawerOpen(true);
+                  }}
+              >{value.label}</span> :
+            <span>{value.label}</span>
+          }
           </Tag>
         ))
       )

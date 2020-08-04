@@ -20,3 +20,7 @@
 .Popup :global .ant-cascader-menu {
     height: 100%;
 }
+
+.Clickable {
+    cursor: pointer;
+}
