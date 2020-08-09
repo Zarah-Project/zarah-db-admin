@@ -27,12 +27,9 @@ const PeopleList = () => {
         <Tooltip title={'View Full Record'}>
           <Button size="small" icon={<FolderViewOutlined/>} onClick={() => onDrawerOpen(row.id, 'view')}/>
         </Tooltip>
-        {
-          row.is_editable &&
-          <Tooltip title={'Edit Record'}>
-            <Button size="small" icon={<EditOutlined/>} onClick={() => onDrawerOpen(row.id, 'edit')}/>
-          </Tooltip>
-        }
+        <Tooltip title={'Edit Record'}>
+          <Button size="small" icon={<EditOutlined/>} onClick={() => onDrawerOpen(row.id, 'edit')}/>
+        </Tooltip>
       </Button.Group>
     )
   };
@@ -63,6 +60,18 @@ const PeopleList = () => {
 
   const afterFormSubmit = () => {
     fetchData();
+    setDrawerOpen(false);
+  };
+
+  const getFooter = () => {
+    return (
+      <Button
+        type={'primary'}
+        onClick={() => onDrawerOpen(undefined, 'create')}
+      >
+        Create
+      </Button>
+    )
   };
 
   return (
@@ -74,6 +83,7 @@ const PeopleList = () => {
         dataSource={data}
         columns={columns}
         size={'small'}
+        footer={getFooter}
       />
       <Drawer
         title={'View Person'}

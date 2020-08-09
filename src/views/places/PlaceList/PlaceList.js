@@ -63,6 +63,18 @@ const PlaceList = () => {
 
   const afterFormSubmit = () => {
     fetchData();
+    setDrawerOpen(false);
+  };
+
+  const getFooter = () => {
+    return (
+      <Button
+        type={'primary'}
+        onClick={() => onDrawerOpen(undefined, 'create')}
+      >
+        Create
+      </Button>
+    )
   };
 
   return (
@@ -74,9 +86,10 @@ const PlaceList = () => {
         dataSource={data}
         columns={columns}
         size={'small'}
+        footer={getFooter}
       />
       <Drawer
-        title={'View Place'}
+        title={'Place'}
         width={'50%'}
         destroyOnClose={true}
         onClose={(e) => onDrawerClose()}

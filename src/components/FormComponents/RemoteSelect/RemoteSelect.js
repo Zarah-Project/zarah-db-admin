@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from "react";
 import {FormItem, Select} from 'formik-antd'
+import style from './RemoteSelect.module.css';
 
 const { Option } = Select;
 
-const RemoteSelect = ({label, field, serviceClass, placeholder, valueField, labelField, color, subForm, disabled, recordName, ...rest}) => {
+const RemoteSelect = ({label, field, serviceClass, placeholder, valueField, labelField, color, subForm, action, recordName, ...rest}) => {
   const [options, setOptions] = useState([]);
 
   useEffect(() => {
@@ -23,11 +24,12 @@ const RemoteSelect = ({label, field, serviceClass, placeholder, valueField, labe
         <Select
           name={field}
           allowClear={true}
-          placeholder={placeholder}
+          placeholder={action === 'view' ? '' : placeholder}
           filterOption={false}
           style={{ width: "100%" }}
           labelInValue={false}
-          disabled={disabled}
+          disabled={action === 'view'}
+          className={action === 'view' ? style.SelectDisabled : ''}
         >
           {
             options.map((option) => (

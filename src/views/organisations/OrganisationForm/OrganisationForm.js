@@ -68,19 +68,19 @@ const OrganisationForm = ({action, formType='simple', recordID, onClose, ...prop
           <Row gutter={10}>
             <Col span={16}>
               <FormItem name={'name'} label={'Name'}>
-                <Input name={'name'} disabled={action === 'view'}/>
+                <Input name={'name'} disabled={action === 'view'} className={style.FormInput}/>
               </FormItem>
             </Col>
             <Col span={8}>
               <FormItem name={'acronym'} label={'Acronym'}>
-                <Input name={'acronym'} disabled={action === 'view'}/>
+                <Input name={'acronym'} disabled={action === 'view'} className={style.FormInput}/>
               </FormItem>
             </Col>
           </Row>
           <Row gutter={10}>
             <Col span={24}>
               <FormItem name={'notes'} label="Notes">
-                <Input.TextArea rows={4} name={'notes'} disabled={action === 'view'}/>
+                <Input.TextArea rows={4} name={'notes'} disabled={action === 'view'} className={style.FormInput}/>
               </FormItem>
             </Col>
           </Row>
@@ -93,7 +93,8 @@ const OrganisationForm = ({action, formType='simple', recordID, onClose, ...prop
                 labelField={'form'}
                 placeholder={'- Select organisation form -'}
                 field={'organisation_form'}
-                disabled={action === 'view'}
+                action={action}
+                className={style.FormInput}
               />
             </Col>
             {
@@ -104,6 +105,7 @@ const OrganisationForm = ({action, formType='simple', recordID, onClose, ...prop
                     name={'organisation_form_text'}
                     placeholder={'Organisation Form (Other)'}
                     disabled={action === 'view'}
+                    className={style.FormInput}
                   />
                 </FormItem>
               </Col>
@@ -119,6 +121,7 @@ const OrganisationForm = ({action, formType='simple', recordID, onClose, ...prop
                 placeholder={'- Select organisation form scale -'}
                 field={'organisation_form_scale'}
                 disabled={action === 'view'}
+                action={action}
               />
               {
                 values['organisation_form_scale'] === 99 &&
@@ -128,6 +131,7 @@ const OrganisationForm = ({action, formType='simple', recordID, onClose, ...prop
                       name={'organisation_form_scale_text'}
                       placeholder={'Organisation Form Scale (Other)'}
                       disabled={action === 'view'}
+                      className={style.FormInput}
                     />
                   </FormItem>
                 </Col>
@@ -141,7 +145,8 @@ const OrganisationForm = ({action, formType='simple', recordID, onClose, ...prop
                 labelField={'membership'}
                 placeholder={'- Select organisation gendered membership -'}
                 field={'organisation_gendered_membership'}
-                disabled={action === 'view'}
+                action={action}
+                className={style.FormInput}
               />
               {
                 values['organisation_gendered_membership'] === 99 &&
@@ -151,6 +156,7 @@ const OrganisationForm = ({action, formType='simple', recordID, onClose, ...prop
                       name={'organisation_gendered_membership_text'}
                       placeholder={'Organisation Gendered Membership (Other)'}
                       disabled={action === 'view'}
+                      className={style.FormInput}
                     />
                   </FormItem>
                 </Col>

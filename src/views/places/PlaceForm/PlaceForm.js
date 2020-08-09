@@ -74,6 +74,7 @@ const PlaceForm = ({action, formType='simple', recordID, onClose, ...props}) => 
                         placeholder={'Place'}
                         style={{width: '100%'}}
                         disabled={action === 'view'}
+                        className={style.FormInput}
                       />
                     </Col>
                     <Col span={2}>
@@ -123,14 +124,14 @@ const PlaceForm = ({action, formType='simple', recordID, onClose, ...props}) => 
           <Row gutter={10}>
             <Col span={24}>
               <FormItem name={'place_name'} label={'Place'}>
-                <Input name={'place_name'} disabled={action === 'view'} />
+                <Input name={'place_name'} disabled={action === 'view'} className={style.FormInput}/>
               </FormItem>
             </Col>
           </Row>
           <Row gutter={10}>
             <Col span={24}>
               <FormItem name={'notes'} label="Notes">
-                <Input.TextArea rows={4} name={'notes'} disabled={action === 'view'} />
+                <Input.TextArea rows={4} name={'notes'} disabled={action === 'view'} className={style.FormInput}/>
               </FormItem>
             </Col>
           </Row>
@@ -139,14 +140,17 @@ const PlaceForm = ({action, formType='simple', recordID, onClose, ...props}) => 
               {renderOtherNames(values)}
             </Col>
           </Row>
-          <Button
-            type="primary"
-            className={style.SubmitButton}
-            loading={loading}
-            onClick={submitForm}
-          >
-            Submit
-          </Button>
+          {
+            action !== 'view' &&
+            <Button
+              type="primary"
+              className={style.SubmitButton}
+              loading={loading}
+              onClick={submitForm}
+            >
+              Submit
+            </Button>
+          }
         </Form>
       )}
     </Formik>

@@ -84,6 +84,7 @@ const PeopleForm = ({action, formType='simple', recordID, onClose, ...props}) =>
                           placeholder={'First Name'}
                           style={{width: '100%'}}
                           disabled={action === 'view'}
+                          className={style.FormInput}
                         />
                       </FormItem>
                     </Col>
@@ -94,6 +95,7 @@ const PeopleForm = ({action, formType='simple', recordID, onClose, ...props}) =>
                           placeholder={'Last Name'}
                           style={{width: '100%'}}
                           disabled={action === 'view'}
+                          className={style.FormInput}
                         />
                       </FormItem>
                     </Col>
@@ -145,19 +147,20 @@ const PeopleForm = ({action, formType='simple', recordID, onClose, ...props}) =>
           <Row gutter={10}>
             <Col span={12}>
               <FormItem name={'first_name'} label={'First name'}>
-                <Input name={'first_name'} disabled={action === 'view'}/>
+                <Input name={'first_name'} disabled={action === 'view'} className={style.FormInput}/>
+
               </FormItem>
             </Col>
             <Col span={12}>
               <FormItem name={'last_name'} label={'Last name'}>
-                <Input name={'last_name'} disabled={action === 'view'}/>
+                <Input name={'last_name'} disabled={action === 'view'} className={style.FormInput}/>
               </FormItem>
             </Col>
           </Row>
           <Row gutter={10}>
             <Col span={24}>
               <FormItem name={'notes'} label="Notes">
-                <Input.TextArea rows={4} name={'notes'} disabled={action === 'view'}/>
+                <Input.TextArea rows={4} name={'notes'} disabled={action === 'view'} className={style.FormInput}/>
               </FormItem>
             </Col>
           </Row>
