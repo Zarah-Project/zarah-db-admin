@@ -7,6 +7,7 @@ import {Field} from "formik";
 import PeopleForm from "../../../views/people/PeopleForm/PeopleForm";
 import PlaceForm from "../../../views/places/PlaceForm/PlaceForm";
 import OrganisationForm from "../../../views/organisations/OrganisationForm/OrganisationForm";
+import EventForm from "../../../views/events/EventForm/EventForm";
 
 const { Option } = Select;
 
@@ -41,7 +42,9 @@ const SelectWithExtraOption = ({label, formAction, field, serviceClass, placehol
     values = form.values[field];
 
     if (values) {
-      values.push(selectedValue)
+      if (!values.some(value => value.key === selectedValue.key)) {
+        values.push(selectedValue)
+      }
     } else {
       values = [selectedValue]
     }
@@ -77,7 +80,7 @@ const SelectWithExtraOption = ({label, formAction, field, serviceClass, placehol
     const onRemoveValue = (e, value) => {
       e.preventDefault();
       const values = [...form.values[field]];
-      const newValues = values.filter(v => v.id !== value.id);
+      const newValues = values.filter(v => v.key !== value.key);
       form.setFieldValue(field, newValues);
     };
 
@@ -95,6 +98,7 @@ const SelectWithExtraOption = ({label, formAction, field, serviceClass, placehol
                 className={style.Clickable}
                 onClick={
                   () => {
+                    setTitle(`View ${recordName}`);
                     setAction(formAction);
                     setSelectedValue({key: value.value});
                     setDrawerOpen(true);
@@ -137,6 +141,15 @@ const SelectWithExtraOption = ({label, formAction, field, serviceClass, placehol
       case 'organisations':
         return (
           <OrganisationForm
+            action={action}
+            formType={'drawer'}
+            recordID={selectedValue ? selectedValue.key : undefined}
+            onClose={afterFormSubmit}
+          />
+        );
+      case 'events':
+        return (
+          <EventForm
             action={action}
             formType={'drawer'}
             recordID={selectedValue ? selectedValue.key : undefined}
