@@ -4,11 +4,25 @@ import SelectWithExtraOption from "../../../../components/FormComponents/SelectW
 import person from '../../../../services/person';
 import place from '../../../../services/place';
 import organisation from '../../../../services/organisation';
+import event from '../../../../services/event';
 import getLabel from "../../../../utils/getLabel";
 
 const AuthorityForm = ({values, action, ...props}) => {
   return (
     <Row gutter={10}>
+      <Col span={24}>
+        <SelectWithExtraOption
+          formAction={action}
+          field={'events'}
+          label={getLabel('events', values)}
+          valueField={'id'}
+          labelField={'event_full'}
+          recordName={'event'}
+          placeholder={'- Select event -'}
+          serviceClass={event}
+          color={'error'}
+        />
+      </Col>
       <Col span={24}>
         <SelectWithExtraOption
           formAction={action}

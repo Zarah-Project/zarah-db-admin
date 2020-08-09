@@ -54,6 +54,10 @@ const fieldLabelConfig = {
     label: 'Other keywords for document',
     access: ['public', 'team', 'private']
   },
+  events: {
+    label: 'Chronology',
+    access: ['public', 'team', 'team']
+  },
   people: {
     label: 'People',
     access: ['public', 'team', 'team']

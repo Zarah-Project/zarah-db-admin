@@ -1,5 +1,5 @@
 const encodeValues = (values) => {
-  const {organisations, places, people, classifications, explanations, consents, file_id, file_url, ...formValues} = values;
+  const {organisations, places, people, events, classifications, explanations, consents, file_id, file_url, ...formValues} = values;
 
   formValues['organisations'] = organisations.map((org) => {
     return org.value
@@ -11,6 +11,10 @@ const encodeValues = (values) => {
 
   formValues['people'] = people.map((person) => {
     return person.value
+  });
+
+  formValues['events'] = events.map((event) => {
+    return event.value
   });
 
   formValues['classifications'] = [];

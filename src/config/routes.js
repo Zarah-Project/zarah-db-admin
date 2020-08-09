@@ -6,6 +6,7 @@ const DocumentForm = React.lazy(() => import('../views/documents/DocumentForm/Do
 const PeopleList = React.lazy(() => import('../views/people/PeopleList/PeopleList'));
 const OrganisationList = React.lazy(() => import('../views/organisations/OrganisationList/OrganisationList'));
 const PlaceList = React.lazy(() => import('../views/places/PlaceList/PlaceList'));
+const EventList = React.lazy(() => import('../views/events/EventList/EventList'));
 
 
 const UserProfileForm = React.lazy(() => import('../components/User/UserProfileForm/UserProfileForm'));
@@ -17,6 +18,7 @@ const routes = [
   {path: '/documents/view/:id', exact: true, component: DocumentForm, action: 'view'},
   {path: '/documents/edit/:id', exact: true, component: DocumentForm, action: 'edit'},
 
+  {path: '/events', exact: true, component: EventList},
   {path: '/people', exact: true, component: PeopleList},
   {path: '/organisations', exact: true, component: OrganisationList},
   {path: '/places', exact: true, component: PlaceList},

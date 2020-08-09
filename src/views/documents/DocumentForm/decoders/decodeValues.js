@@ -1,11 +1,5 @@
 const decodeValues = (values) => {
-  const {dates, classifications, explanations, consents, files, ...formValues} = values;
-
-  if (dates.length === 0) {
-    formValues['dates'] = [{date_from: '', date_to: '', event: ''}]
-  } else {
-    formValues['dates'] = dates
-  }
+  const {classifications, explanations, consents, files, ...formValues} = values;
 
   formValues['classifications'] = {};
   classifications.forEach((classification) => {

@@ -22,13 +22,16 @@ const DefaultLayout = () => {
             <Menu.Item key="1">
               <Link to={'/documents'}>Documents</Link>
             </Menu.Item>
-            <Menu.Item key="2">
+          <Menu.Item key="2">
+            <Link to={'/events'}>Chronology</Link>
+          </Menu.Item>
+            <Menu.Item key="3">
               <Link to={'/people'}>People</Link>
             </Menu.Item>
-          <Menu.Item key="3">
+          <Menu.Item key="4">
             <Link to={'/organisations'}>Organisations</Link>
           </Menu.Item>
-          <Menu.Item key="4">
+          <Menu.Item key="5">
             <Link to={'/places'}>Places</Link>
           </Menu.Item>
           <UserProfileMenu/>

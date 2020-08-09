@@ -33,3 +33,7 @@
 .ErrorAlert {
     margin-bottom: 15px;
 }
+
+.ApproxDateField :global .ant-form-item-explain {
+    font-size: 12px;
+}
