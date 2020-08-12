@@ -15,7 +15,11 @@ class Event {
 
   edit = (recordID, formValues) => {
     return API.put(`/v1/authority/events/${recordID}/`, formValues);
-  }
+  };
+
+  delete = (recordID) => {
+    return API.delete(`/v1/authority/events/${recordID}/`);
+  };
 }
 
 const event = new Event();

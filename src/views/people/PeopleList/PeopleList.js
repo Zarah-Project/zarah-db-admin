@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import {Button, Col, Drawer, Table, Tooltip} from "antd";
+import {Button, Col, Drawer, Table, Tooltip, Modal} from "antd";
 import style from "../../../components/FormComponents/ZoteroSearch/ZoteroItems.module.css";
 import person from '../../../services/person';
-import { EditOutlined, FolderViewOutlined } from "@ant-design/icons";
+import { EditOutlined, FolderViewOutlined, DeleteOutlined } from "@ant-design/icons";
 import PeopleForm from "../PeopleForm/PeopleForm";
 
 const PeopleList = () => {
@@ -21,6 +21,22 @@ const PeopleList = () => {
     })
   };
 
+  const onDelete = (id) => {
+    const { confirm } = Modal;
+
+    confirm({
+      title: 'Are you sure you would like to delete this person?',
+      okText: 'Yes',
+      okType: 'danger',
+      cancelText: 'No',
+      onOk() {
+        person.delete(id).then((response) => {
+          fetchData();
+        })
+      }
+    });
+  };
+
   const renderActionButtons = (row) => {
     return (
       <Button.Group>
@@ -30,6 +46,12 @@ const PeopleList = () => {
         <Tooltip title={'Edit Record'}>
           <Button size="small" icon={<EditOutlined/>} onClick={() => onDrawerOpen(row.id, 'edit')}/>
         </Tooltip>
+        {
+          row.is_removable &&
+          <Tooltip title={'Delete Record'}>
+            <Button size="small" icon={<DeleteOutlined/>} onClick={() => onDelete(row.id)}/>
+          </Tooltip>
+        }
       </Button.Group>
     )
   };

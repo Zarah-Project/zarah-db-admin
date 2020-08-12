@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import {Button, Col, Drawer, Table, Tooltip} from "antd";
+import {Button, Col, Drawer, Modal, Table, Tooltip} from "antd";
 import style from "../../../components/FormComponents/ZoteroSearch/ZoteroItems.module.css";
 import organisation from '../../../services/organisation';
-import { EditOutlined, FolderViewOutlined } from "@ant-design/icons";
+import { EditOutlined, FolderViewOutlined, DeleteOutlined } from "@ant-design/icons";
 import OrganisationForm from "../OrganisationForm/OrganisationForm";
+import person from "../../../services/person";
 
 const OrganisationList = () => {
   const [data, setData] = useState([]);
@@ -21,6 +22,22 @@ const OrganisationList = () => {
     })
   };
 
+  const onDelete = (id) => {
+    const { confirm } = Modal;
+
+    confirm({
+      title: 'Are you sure you would like to delete this organisation?',
+      okText: 'Yes',
+      okType: 'danger',
+      cancelText: 'No',
+      onOk() {
+        organisation.delete(id).then((response) => {
+          fetchData();
+        })
+      }
+    });
+  };
+
   const renderActionButtons = (row) => {
     return (
       <Button.Group>
@@ -30,6 +47,12 @@ const OrganisationList = () => {
         <Tooltip title={'Edit Record'}>
           <Button size="small" icon={<EditOutlined/>} onClick={() => onDrawerOpen(row.id, 'edit')}/>
         </Tooltip>
+        {
+          row.is_removable &&
+          <Tooltip title={'Delete Record'}>
+            <Button size="small" icon={<DeleteOutlined/>} onClick={() => onDelete(row.id)}/>
+          </Tooltip>
+        }
       </Button.Group>
     )
   };

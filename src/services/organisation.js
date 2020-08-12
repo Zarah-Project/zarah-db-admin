@@ -17,6 +17,10 @@ class Organisation {
     return API.put(`/v1/authority/organisations/${recordID}/`, formValues);
   };
 
+  delete = (recordID) => {
+    return API.delete(`/v1/authority/organisations/${recordID}/`);
+  };
+
   selectForms = () => {
     return API.get(`/v1/authority/organisation_forms/`);
   };

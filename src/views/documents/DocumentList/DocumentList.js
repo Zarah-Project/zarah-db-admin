@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {Button, Col, Input, Row, Switch, Table, Tooltip} from "antd";
+import {Button, Col, Input, Modal, Row, Table, Tooltip} from "antd";
 import style from "../../../components/FormComponents/ZoteroSearch/ZoteroItems.module.css";
 import api from '../../../services/api';
 import document from '../../../services/document';
-import { EditOutlined, FolderViewOutlined } from "@ant-design/icons";
+import { EditOutlined, FolderViewOutlined, DeleteOutlined } from "@ant-design/icons";
 import {Link} from "react-router-dom";
 import searchStyle from './DocumentList.module.css';
+import person from "../../../services/person";
 
 const DocumentList = () => {
   const [loading, setLoading] = useState(false);
@@ -32,6 +33,22 @@ const DocumentList = () => {
     })
   };
 
+  const onDelete = (id) => {
+    const { confirm } = Modal;
+
+    confirm({
+      title: 'Are you sure you would like to delete this document?',
+      okText: 'Yes',
+      okType: 'danger',
+      cancelText: 'No',
+      onOk() {
+        document.delete(id).then((response) => {
+          fetchData();
+        })
+      }
+    });
+  };
+
   const renderActionButtons = (row) => {
     return (
       <Button.Group>
@@ -47,6 +64,12 @@ const DocumentList = () => {
               <Button size="small" icon={<EditOutlined/>}/>
             </Tooltip>
           </Link>
+        }
+        {
+          row.is_editable &&
+          <Tooltip title={'Delete Record'}>
+            <Button size="small" icon={<DeleteOutlined/>} onClick={() => onDelete(row.id)}/>
+          </Tooltip>
         }
       </Button.Group>
     )

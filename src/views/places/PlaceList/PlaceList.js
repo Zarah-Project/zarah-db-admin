@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import {Button, Col, Drawer, Table, Tooltip} from "antd";
+import {Button, Col, Drawer, Modal, Table, Tooltip} from "antd";
 import style from "../../../components/FormComponents/ZoteroSearch/ZoteroItems.module.css";
-import place from '../../../services/place';
-import { EditOutlined, FolderViewOutlined } from "@ant-design/icons";
+import { EditOutlined, FolderViewOutlined, DeleteOutlined } from "@ant-design/icons";
 import PlaceForm from "../PlaceForm/PlaceForm";
+import place from "../../../services/place";
 
 const PlaceList = () => {
   const [data, setData] = useState([]);
@@ -21,16 +21,35 @@ const PlaceList = () => {
     })
   };
 
+  const onDelete = (id) => {
+    const { confirm } = Modal;
+
+    confirm({
+      title: 'Are you sure you would like to delete this place?',
+      okText: 'Yes',
+      okType: 'danger',
+      cancelText: 'No',
+      onOk() {
+        place.delete(id).then((response) => {
+          fetchData();
+        })
+      }
+    });
+  };
+
   const renderActionButtons = (row) => {
     return (
       <Button.Group>
         <Tooltip title={'View Full Record'}>
           <Button size="small" icon={<FolderViewOutlined/>} onClick={() => onDrawerOpen(row.id, 'view')}/>
         </Tooltip>
+        <Tooltip title={'Edit Record'}>
+          <Button size="small" icon={<EditOutlined/>} onClick={() => onDrawerOpen(row.id, 'edit')}/>
+        </Tooltip>
         {
-          row.is_editable &&
-          <Tooltip title={'Edit Record'}>
-            <Button size="small" icon={<EditOutlined/>} onClick={() => onDrawerOpen(row.id, 'edit')}/>
+          row.is_removable &&
+          <Tooltip title={'Delete Record'}>
+            <Button size="small" icon={<DeleteOutlined/>} onClick={() => onDelete(row.id)}/>
           </Tooltip>
         }
       </Button.Group>
@@ -42,6 +61,11 @@ const PlaceList = () => {
       title: 'Place',
       dataIndex: 'place_name',
       key: 'place_name',
+      ellipsis: false,
+    }, {
+      title: 'Country / Kindgom',
+      dataIndex: 'country',
+      key: 'country',
       ellipsis: false,
     }, {
       title: 'Actions',

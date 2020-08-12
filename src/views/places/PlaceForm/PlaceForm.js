@@ -130,6 +130,13 @@ const PlaceForm = ({action, formType='simple', recordID, onClose, ...props}) => 
           </Row>
           <Row gutter={10}>
             <Col span={24}>
+              <FormItem name={'country'} label={'Country / Kingdom'}>
+                <Input name={'country'} disabled={action === 'view'} className={style.FormInput}/>
+              </FormItem>
+            </Col>
+          </Row>
+          <Row gutter={10}>
+            <Col span={24}>
               <FormItem name={'notes'} label="Notes">
                 <Input.TextArea rows={4} name={'notes'} disabled={action === 'view'} className={style.FormInput}/>
               </FormItem>

@@ -25,6 +25,10 @@ class Document {
     return API.put(`/v1/document/${recordID}/`, formValues);
   };
 
+  delete = (recordID) => {
+    return API.delete(`/v1/document/${recordID}/`);
+  };
+
   search = (params, cancelToken) => {
     return API.get(`/v1/document/search`, {params: params});
   }

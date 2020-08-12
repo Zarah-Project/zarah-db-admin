@@ -15,7 +15,11 @@ class Person {
 
   edit = (recordID, formValues) => {
     return API.put(`/v1/authority/people/${recordID}/`, formValues);
-  }
+  };
+
+  delete = (recordID) => {
+    return API.delete(`/v1/authority/people/${recordID}/`);
+  };
 }
 
 const person = new Person();
