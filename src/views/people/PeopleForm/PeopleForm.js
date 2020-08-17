@@ -81,7 +81,7 @@ const PeopleForm = ({action, formType='simple', recordID, onClose, ...props}) =>
                       <FormItem name={`other_names[${idx}].first_name`}>
                         <Input
                           name={`other_names[${idx}].first_name`}
-                          placeholder={'First Name'}
+                          placeholder={'First name'}
                           style={{width: '100%'}}
                           disabled={action === 'view'}
                           className={style.FormInput}
@@ -92,7 +92,7 @@ const PeopleForm = ({action, formType='simple', recordID, onClose, ...props}) =>
                       <FormItem name={`other_names[${idx}].last_name`}>
                         <Input
                           name={`other_names[${idx}].last_name`}
-                          placeholder={'Last Name'}
+                          placeholder={'Last name'}
                           style={{width: '100%'}}
                           disabled={action === 'view'}
                           className={style.FormInput}

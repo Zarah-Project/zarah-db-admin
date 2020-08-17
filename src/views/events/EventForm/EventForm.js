@@ -64,7 +64,7 @@ const EventForm = ({action, formType='simple', recordID, onClose, ...props}) => 
             <Col span={12}>
               <FormItem
                 name={'date_from'}
-                label={'Date From'}
+                label={'Date from'}
                 help={'Date format: YYYY, YYYY-MM, or YYYY-MM-DD'}
                 className={style.ApproxDateField}
               >
@@ -74,7 +74,7 @@ const EventForm = ({action, formType='simple', recordID, onClose, ...props}) => 
             <Col span={12}>
               <FormItem
                 name={'date_to'}
-                label={'Date To'}
+                label={'Date to'}
                 help={'Date format: YYYY, YYYY-MM, or YYYY-MM-DD'}
                 className={style.ApproxDateField}
               >

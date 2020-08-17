@@ -87,7 +87,7 @@ const OrganisationForm = ({action, formType='simple', recordID, onClose, ...prop
           <Row gutter={10}>
             <Col span={24}>
               <RemoteSelect
-                label={'Organisation Form'}
+                label={'Organisation form'}
                 serviceClass={organisation.selectForms}
                 valueField={'id'}
                 labelField={'form'}
@@ -103,7 +103,7 @@ const OrganisationForm = ({action, formType='simple', recordID, onClose, ...prop
                 <FormItem name={'organisation_form_text'} >
                   <Input
                     name={'organisation_form_text'}
-                    placeholder={'Organisation Form (Other)'}
+                    placeholder={'Organisation form (other)'}
                     disabled={action === 'view'}
                     className={style.FormInput}
                   />
@@ -114,7 +114,7 @@ const OrganisationForm = ({action, formType='simple', recordID, onClose, ...prop
           <Row gutter={10}>
             <Col span={24}>
               <RemoteSelect
-                label={'Organisation Form Scale'}
+                label={'Organisation form scale'}
                 serviceClass={organisation.selectFormScales}
                 valueField={'id'}
                 labelField={'scale'}
@@ -129,7 +129,7 @@ const OrganisationForm = ({action, formType='simple', recordID, onClose, ...prop
                   <FormItem name={'organisation_form_scale_text'} >
                     <Input
                       name={'organisation_form_scale_text'}
-                      placeholder={'Organisation Form Scale (Other)'}
+                      placeholder={'Organisation form scale (other)'}
                       disabled={action === 'view'}
                       className={style.FormInput}
                     />
@@ -139,7 +139,7 @@ const OrganisationForm = ({action, formType='simple', recordID, onClose, ...prop
             </Col>
             <Col span={24}>
               <RemoteSelect
-                label={'Organisation Gendered Membership'}
+                label={'Organisation gendered membership'}
                 serviceClass={organisation.selectGenderedMemberships}
                 valueField={'id'}
                 labelField={'membership'}
@@ -154,7 +154,7 @@ const OrganisationForm = ({action, formType='simple', recordID, onClose, ...prop
                   <FormItem name={'organisation_gendered_membership_text'} >
                     <Input
                       name={'organisation_gendered_membership_text'}
-                      placeholder={'Organisation Gendered Membership (Other)'}
+                      placeholder={'Organisation gendered membership (other)'}
                       disabled={action === 'view'}
                       className={style.FormInput}
                     />
