@@ -38,3 +38,8 @@
 .ErrorMessage {
     margin-top: 10px;
 }
+
+.ForgotPassword {
+    cursor: pointer;
+    border-bottom: 1px dotted;
+}
