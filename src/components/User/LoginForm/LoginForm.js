@@ -7,15 +7,24 @@ import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import auth from "../../../services/auth";
 import {setAuthTokens} from "axios-jwt";
 import { useHistory } from "react-router-dom";
-import {Alert} from "antd";
+import {Alert, Col, Popover, Row, Typography} from "antd";
 import {useDispatch} from "react-redux";
 import setUser from "../UserAvatar/actions/setUser";
+
+const { Text } = Typography;
 
 const LoginForm = () => {
   let history = useHistory();
   const [loading, setLoading] = useState(false);
   const [loginError, setLoginError] = useState(false);
   const dispatch = useDispatch();
+
+  const lostPassword = (
+    <div>
+      <span>In case you lost your password, please contact the ZARAH database administrator
+        or the project member in charge of the database so that your password can be reset.</span>
+    </div>
+  )
 
   const authResponseToAuthTokens = (response) => {
     return {
@@ -68,13 +77,24 @@ const LoginForm = () => {
               placeholder={'Password'}
             />
           </FormItem>
-          <SubmitButton
-            loading={loading}
-            style={{marginTop: '10px'}}
-            disabled={false}
-          >
-            Submit
-          </SubmitButton>
+          <Row>
+            <Col span={12}>
+              <SubmitButton
+                loading={loading}
+                style={{marginTop: '10px'}}
+                disabled={false}
+              >
+                Submit
+              </SubmitButton>
+            </Col>
+            <Col span={12}>
+              <div style={{marginTop: 15}}>
+                <Popover content={lostPassword} overlayStyle={{width: 400}}>
+                  <Text className={style.ForgotPassword}>Forgot your password?</Text>
+                </Popover>
+              </div>
+            </Col>
+          </Row>
         </Form>
       </Formik>
     </React.Fragment>

@@ -42,4 +42,5 @@
 .ForgotPassword {
     cursor: pointer;
     border-bottom: 1px dotted;
+    text-align: right;
 }
