@@ -47,7 +47,7 @@ const initialValues = {
 
 const panelFields = {
   base_data: {
-    label: 'Base Data',
+    label: 'Base data',
     fields: ['title', 'type', 'item_type', 'dates', 'summary', 'abstract']
   }
 };
@@ -248,13 +248,13 @@ const DocumentForm = ({action, ...props}) => {
                       setFieldValue={setFieldValue}
                     />
                   </Panel>
-                  <Panel header="Historical Context, Labour Conditions and Living Conditions" key="3" className={style.Panel}>
+                  <Panel header="Historical context, labour conditions and living conditions" key="3" className={style.Panel}>
                     <HistoricalContext
                       action={action}
                       values={values}
                     />
                   </Panel>
-                  <Panel header="Labour Relations" key="4" className={style.Panel}>
+                  <Panel header="Labour relations" key="4" className={style.Panel}>
                     <Labour
                       action={action}
                       values={values}
@@ -290,7 +290,7 @@ const DocumentForm = ({action, ...props}) => {
                       values={values}
                     />
                   </Panel>
-                  <Panel header="Interview Consent and Permissions for Documents" key="10" className={style.Panel}>
+                  <Panel header="Interview consent and permissions for documents" key="10" className={style.Panel}>
                     <ConsentSelect
                       action={action}
                       values={values}
