@@ -6,7 +6,6 @@ import document from '../../../services/document';
 import { EditOutlined, FolderViewOutlined, DeleteOutlined } from "@ant-design/icons";
 import {Link} from "react-router-dom";
 import searchStyle from './DocumentList.module.css';
-import person from "../../../services/person";
 
 const DocumentList = () => {
   const [loading, setLoading] = useState(false);

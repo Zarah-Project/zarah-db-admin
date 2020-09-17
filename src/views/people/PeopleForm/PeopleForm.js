@@ -7,6 +7,8 @@ import style from "../../documents/DocumentForm/DocumentForm.module.css";
 import person from '../../../services/person';
 import validation from "./validation/validation";
 import Label from "../../../components/FormComponents/Label/Label";
+import RelatedDocumentTable from "../../../components/RelatedDocumentsTable/RelatedDocumentsTable";
+import history from '../../../utils/history'
 
 const PeopleForm = ({action, formType='simple', recordID, onClose, ...props}) => {
   const [loading, setLoading] = useState(false);

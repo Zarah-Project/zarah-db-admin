@@ -9,8 +9,8 @@ class Document {
     return API.get(`/v1/document/view_file/${file_id}`, {responseType: 'blob'});
   };
 
-  list = (search, cancelToken) => {
-    return API.get('/v1/document/', {params: {search: search}, cancelToken: cancelToken});
+  list = (params, cancelToken) => {
+    return API.get('/v1/document/', {params: params, cancelToken: cancelToken});
   };
 
   read = (recordID) => {
