@@ -9,6 +9,7 @@ import history from "../../utils/history";
 import listStyle from './AuthorityList.module.css';
 import OrganisationForm from "../../views/organisations/OrganisationForm/OrganisationForm";
 import PlaceForm from "../../views/places/PlaceForm/PlaceForm";
+import EventForm from "../../views/events/EventForm/EventForm";
 
 const AuthorityList = ({formType, columns, dataKey, serviceClass, ...props}) => {
   const [data, setData] = useState([]);
@@ -151,6 +152,15 @@ const AuthorityList = ({formType, columns, dataKey, serviceClass, ...props}) => 
       case 'place':
         return (
           <PlaceForm
+            action={action}
+            formType={'drawer'}
+            recordID={selectedValue}
+            onClose={afterFormSubmit}
+          />
+        );
+      case 'event':
+        return (
+          <EventForm
             action={action}
             formType={'drawer'}
             recordID={selectedValue}
