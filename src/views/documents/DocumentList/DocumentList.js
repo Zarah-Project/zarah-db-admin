@@ -3,7 +3,7 @@ import {Button, Col, Input, Modal, Row, Table, Tooltip} from "antd";
 import style from "../../../components/FormComponents/ZoteroSearch/ZoteroItems.module.css";
 import api from '../../../services/api';
 import document from '../../../services/document';
-import { EditOutlined, FolderViewOutlined, DeleteOutlined } from "@ant-design/icons";
+import { CopyOutlined, EditOutlined, FolderViewOutlined, DeleteOutlined } from "@ant-design/icons";
 import {Link} from "react-router-dom";
 import searchStyle from './DocumentList.module.css';
 
@@ -48,29 +48,50 @@ const DocumentList = () => {
     });
   };
 
+  const handleClone = (id) => {
+    const { confirm } = Modal;
+
+    confirm({
+      title: 'Are you sure you would like to clone this document?',
+      okText: 'Yes',
+      okType: 'warning',
+      cancelText: 'No',
+      onOk() {
+        document.clone(id).then((response) => {
+          fetchData();
+        })
+      }
+    });
+  };
+
   const renderActionButtons = (row) => {
     return (
-      <Button.Group>
-        <Link to={`/documents/view/${row.id}`}>
-          <Tooltip title={'View Full Record'}>
-            <Button size="small" icon={<FolderViewOutlined/>} />
-          </Tooltip>
-        </Link>
-        {
-          row.is_editable &&
-          <Link to={`/documents/edit/${row.id}`}>
-            <Tooltip title={'Edit Record'}>
-              <Button size="small" icon={<EditOutlined/>}/>
+      <React.Fragment>
+        <Button.Group>
+          <Link to={`/documents/view/${row.id}`}>
+            <Tooltip title={'View Full Record'}>
+              <Button size="small" icon={<FolderViewOutlined/>} />
             </Tooltip>
           </Link>
-        }
-        {
-          row.is_editable &&
-          <Tooltip title={'Delete Record'}>
-            <Button size="small" icon={<DeleteOutlined/>} onClick={() => onDelete(row.id)}/>
-          </Tooltip>
-        }
-      </Button.Group>
+          {
+            row.is_editable &&
+            <Link to={`/documents/edit/${row.id}`}>
+              <Tooltip title={'Edit Record'}>
+                <Button size="small" icon={<EditOutlined/>}/>
+              </Tooltip>
+            </Link>
+          }
+          {
+            row.is_editable &&
+            <Tooltip title={'Delete Record'}>
+              <Button size="small" icon={<DeleteOutlined/>} onClick={() => onDelete(row.id)}/>
+            </Tooltip>
+          }
+        </Button.Group>
+        <Tooltip title={'Clone'}>
+          <Button size="small" icon={<CopyOutlined/>} style={{marginLeft: '15px'}} onClick={() => handleClone(row.id)}/>
+        </Tooltip>
+      </React.Fragment>
     )
   };
 
@@ -82,13 +103,25 @@ const DocumentList = () => {
       ellipsis: false,
       sorter: true,
     }, {
+      title: 'Item Type',
+      dataIndex: 'item_type',
+      key: 'item_type'
+    }, {
+      title: 'Language',
+      dataIndex: 'language',
+      key: 'language'
+    }, {
+      title: 'Year',
+      dataIndex: 'year',
+      key: 'year'
+    }, {
       title: 'Created By',
       dataIndex: 'created_by',
       key: 'created_by'
     }, {
       title: 'Actions',
       render: renderActionButtons,
-      width: 100,
+      width: 130,
       className: style.ActionColumn
     }
   ];

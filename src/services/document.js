@@ -31,7 +31,12 @@ class Document {
 
   search = (params, cancelToken) => {
     return API.get(`/v1/document/search`, {params: params});
-  }
+  };
+
+  clone = (recordID) => {
+    return API.post(`/v1/document/clone/${recordID}/`);
+  };
+
 }
 
 const document = new Document();
