@@ -22,6 +22,9 @@ const RelatedDocumentTable = ({formType, recordID, ...props}) => {
         case 'place':
           setParams({'places': recordID});
           break;
+        case 'event':
+          setParams({'events': recordID});
+          break;
         default:
           break;
       }
