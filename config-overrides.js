@@ -10,7 +10,9 @@ module.exports = override(
     javascriptEnabled: true,
     modifyVars: {
       '@form-vertical-label-padding': '0px',
-      '@form-item-margin-bottom': '10px'
+      '@form-item-margin-bottom': '10px',
+      '@layout-header-background': '#333',
+      '@primary-color': '#a70e39'
     },
   }),
 );
