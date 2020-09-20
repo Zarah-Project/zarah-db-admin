@@ -7,6 +7,8 @@ import style from './FormattedTextArea.module.css';
 
 const FormattedTextArea = ({name, disabled, action, ...props}) => {
   const options = {
+    height : 'auto',
+    minHeight : '100px',
     buttonList: [
       ['bold', 'underline', 'italic'],
       ['list', 'link'],
