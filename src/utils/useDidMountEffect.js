@@ -16,6 +16,7 @@ export const useDidMountEffect = (effect, dependencies) => {
     } else {
       mounted.current = true;
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, dependencies);
 
   // Reset on unmount for the next mount.

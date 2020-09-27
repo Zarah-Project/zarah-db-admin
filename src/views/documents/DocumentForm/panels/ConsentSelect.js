@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {FormItem, Input} from "formik-antd";
 import style from "../../../../components/FormComponents/FormTextArea/FormTextArea.module.css";
 import metadata from "../../../../services/metadata";
-import {Col, Typography} from "antd";
+import {Typography} from "antd";
 import {Radio} from "formik-antd";
 import Label from "../../../../components/FormComponents/Label/Label";
 import FormTextArea from "../../../../components/FormComponents/FormTextArea/FormTextArea";

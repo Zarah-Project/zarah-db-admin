@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Button, Col, Drawer, Table, Tooltip, Modal} from "antd";
 import style from "../../components/FormComponents/ZoteroSearch/ZoteroItems.module.css";
-import person from '../../services/person';
 import { EditOutlined, FolderViewOutlined, DeleteOutlined } from "@ant-design/icons";
 import PeopleForm from "../../views/people/PeopleForm/PeopleForm";
 import RelatedDocumentTable from "../../components/RelatedDocumentsTable/RelatedDocumentsTable";
@@ -21,6 +20,7 @@ const AuthorityList = ({formType, columns, dataKey, serviceClass, ...props}) => 
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchData = () => {

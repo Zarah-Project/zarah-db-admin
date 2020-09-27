@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, Col, Divider, Layout, Popover, Row, Typography} from "antd";
+import {Card, Col, Divider, Layout, Row, Typography} from "antd";
 import LoginForm from "./LoginForm";
 import logo from '../../../assets/image/zarah-logo.png';
 

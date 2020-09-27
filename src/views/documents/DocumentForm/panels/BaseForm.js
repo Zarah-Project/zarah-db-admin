@@ -1,12 +1,9 @@
 import React from 'react';
-import {FieldArray} from "formik";
-import {Button, Col, Divider, Row} from "antd";
+import {Col, Divider, Row} from "antd";
 import {FormItem, Input} from 'formik-antd';
-import { CloseOutlined } from '@ant-design/icons';
 import ZoteroSearch from "../../../../components/FormComponents/ZoteroSearch/ZoteroSearch";
 import FormattedTextArea from "../../../../components/FormComponents/FormattedTextArea/FormattedTextArea";
 import TagAssigner from "../../../../components/FormComponents/TagAssigner/TagAssigner";
-import Label from "../../../../components/FormComponents/Label/Label";
 import getLabel from "../../../../utils/getLabel";
 import style from '../DocumentForm.module.css';
 

@@ -29,6 +29,7 @@ const RelatedDocumentTable = ({formType, recordID, ...props}) => {
           break;
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useDidMountEffect(() => {
