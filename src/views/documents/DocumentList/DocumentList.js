@@ -101,19 +101,22 @@ const DocumentList = () => {
       dataIndex: 'title',
       key: 'title',
       ellipsis: false,
-      sorter: true,
+      sorter: true
     }, {
       title: 'Item Type',
       dataIndex: 'item_type',
-      key: 'item_type'
+      key: 'item_type',
+      sorter: true
     }, {
       title: 'Language',
       dataIndex: 'language',
-      key: 'language'
+      key: 'language',
+      sorter: true
     }, {
       title: 'Year',
       dataIndex: 'year',
-      key: 'year'
+      key: 'year',
+      sorter: true
     }, {
       title: 'Created By',
       dataIndex: 'created_by',
