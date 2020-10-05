@@ -7,13 +7,35 @@ import { CopyOutlined, EditOutlined, FolderViewOutlined, DeleteOutlined } from "
 import {Link} from "react-router-dom";
 import history from "../../../utils/history";
 import searchStyle from './DocumentList.module.css';
+import {shallowEqual, useDispatch, useSelector} from "react-redux";
+import setTableSorter from "../../../store/actions/setTableSorter";
+import setTablePagination from "../../../store/actions/setTablePagination";
+import setTableTotal from "../../../store/actions/setTableTotal";
+import {initPagination, loadPagination, loadSorter} from "../../../utils/tableUtils";
+import setTableSearch from "../../../store/actions/setTableSearch";
 
 const DocumentList = () => {
   const [loading, setLoading] = useState(false);
   const [params, setParams] = useState({});
   const [data, setData] = useState([]);
 
+  // Redux Hooks
+  const tableProps = useSelector(state => state.tableSettings['documents'], shallowEqual);
+  const dispatch = useDispatch();
+
   const { Search } = Input;
+
+  // componentDidMount
+  useEffect(() => {
+    if (tableProps) {
+      setParams(loadParamsFromRedux(tableProps));
+    } else {
+      dispatch(setTableSorter({}, 'documents'));
+      dispatch(setTablePagination(initPagination(), 'documents'));
+      setParams({});
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     const source = api.CancelToken.source();
@@ -27,6 +49,7 @@ const DocumentList = () => {
   const fetchData = (params, cancelToken) => {
     document.search(params, cancelToken).then((response) => {
       setLoading(false);
+      dispatch(setTableTotal(response.data.count, 'documents'));
       setData(response.data.results);
     }).catch(error => {
       setLoading(false);
@@ -162,6 +185,23 @@ const DocumentList = () => {
     </React.Fragment>
   );
 
+  const loadParamsFromRedux = (tableProps) => {
+    let paginationParams, sorterParams, searchParams;
+
+    // Load pagination from redux
+    paginationParams = loadPagination(tableProps['pagination']);
+
+    // Load sorting from redux
+    sorterParams = loadSorter(tableProps['sorter']);
+
+    // Load search from redux
+    searchParams = tableProps ? {query: tableProps['search']} : {};
+
+    // Load filters from redux
+    const filterParams = tableProps['filter'];
+    return Object.assign({}, filterParams, paginationParams, sorterParams, searchParams);
+  };
+
   const handleSearch = (value) => {
     setLoading(true);
 
@@ -170,25 +210,7 @@ const DocumentList = () => {
     } else {
       setParams({});
     }
-  };
-
-  const loadSorter = (sorter) => {
-    const {columnKey, order, column} = sorter;
-    if (columnKey && column) {
-      if (column.hasOwnProperty('sortKeys')) {
-        return {ordering: order === 'ascend' ? `${column.sortKeys.join(',')}` : `-${column.sortKeys.join(',')}`}
-      } else {
-        return {ordering: order === 'ascend' ? `${columnKey}` : `-${columnKey}`}
-      }
-    }
-  };
-
-  const loadPagination = (pagination) => {
-    const {pageSize, current} = pagination;
-    return {
-      limit: pageSize,
-      offset: (current - 1) * pageSize
-    }
+    dispatch(setTableSearch(value, 'documents'))
   };
 
   const handleTableChange = (pagination, filters, sorter) => {
@@ -198,16 +220,19 @@ const DocumentList = () => {
     const {current} = pagination;
     if (current) {
       paginationParams = loadPagination(pagination);
+      dispatch(setTablePagination(pagination, 'documents'));
     }
 
     // Sorting
+    // loadColumns(sorter);
     if (Object.entries(sorter).length > 0) {
       const {columnKey} = sorter;
       if (columnKey) {
         sorterParams = loadSorter(sorter);
+        dispatch(setTableSorter(sorter, 'documents'));
       }
     } else {
-      sorterParams = {};
+      dispatch(setTableSorter({}, 'documents'));
     }
 
     setParams(Object.assign({}, params, paginationParams, sorterParams))
@@ -222,6 +247,7 @@ const DocumentList = () => {
               placeholder="Search..."
               onSearch={handleSearch}
               loading={loading}
+              defaultValue={tableProps ? tableProps['search'] : undefined}
               allowClear
               enterButton
             />
@@ -235,6 +261,7 @@ const DocumentList = () => {
         dataSource={data}
         columns={columns}
         size={'small'}
+        pagination={tableProps ? tableProps['pagination'] : {}}
         onChange={handleTableChange}
         footer={getFooter}
       />
