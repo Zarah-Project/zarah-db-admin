@@ -9,9 +9,12 @@ import listStyle from './AuthorityList.module.css';
 import OrganisationForm from "../../views/organisations/OrganisationForm/OrganisationForm";
 import PlaceForm from "../../views/places/PlaceForm/PlaceForm";
 import EventForm from "../../views/events/EventForm/EventForm";
+import api from "../../services/api";
 
 const AuthorityList = ({formType, columns, dataKey, serviceClass, ...props}) => {
+  const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
+  const [params, setParams] = useState({offset: 0, limit: 10});
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [drawerRelatedOpen, setDrawerRelatedOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState(undefined);
@@ -19,14 +22,29 @@ const AuthorityList = ({formType, columns, dataKey, serviceClass, ...props}) => 
   const [action, setAction] = useState('view');
 
   useEffect(() => {
-    fetchData();
+    const source = api.CancelToken.source();
+    fetchData(params, source.token);
+    return () => {
+      source.cancel();
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [params]);
 
-  const fetchData = () => {
-    serviceClass.list().then((response) => {
+  const fetchData = (params, cancelToken) => {
+    serviceClass.list(params, cancelToken).then((response) => {
+      setLoading(false);
       setData(response.data);
-    });
+    }).catch(error => {
+      setLoading(false);
+    })
+  };
+
+  const pagination = {
+    showQuickJumper: true,
+    showSizeChanger: true,
+    total: 0,
+    pageSizeOptions: ['10', '20', '30', '50', '100'],
+    showTotal: (total, range) => {return `${range[0]}-${range[1]} of ${total} items`}
   };
 
   const onDelete = (id) => {
@@ -172,15 +190,59 @@ const AuthorityList = ({formType, columns, dataKey, serviceClass, ...props}) => 
     }
   };
 
+  const loadSorter = (sorter) => {
+    const {columnKey, order, column} = sorter;
+    if (columnKey && column) {
+      if (column.hasOwnProperty('sortKeys')) {
+        return {ordering: order === 'ascend' ? `${column.sortKeys.join(',')}` : `-${column.sortKeys.join(',')}`}
+      } else {
+        return {ordering: order === 'ascend' ? `${columnKey}` : `-${columnKey}`}
+      }
+    }
+  };
+
+  const loadPagination = (pagination) => {
+    const {pageSize, current} = pagination;
+    return {
+      limit: pageSize,
+      offset: (current - 1) * pageSize
+    }
+  };
+
+  const handleTableChange = (pagination, filters, sorter) => {
+    let paginationParams, sorterParams = {};
+
+    // Pagination
+    const {current} = pagination;
+    if (current) {
+      paginationParams = loadPagination(pagination);
+    }
+
+    // Sorting
+    if (Object.entries(sorter).length > 0) {
+      const {columnKey} = sorter;
+      if (columnKey) {
+        sorterParams = loadSorter(sorter);
+      }
+    } else {
+      sorterParams = {};
+    }
+
+    setParams(Object.assign({}, params, paginationParams, sorterParams))
+  };
+
   return (
     <Col span={24}>
       <Table
+        loading={loading}
         style={{marginTop: '20px'}}
         bordered={true}
         rowKey={record => record.id}
         dataSource={data}
         columns={[...columns, ...columnsConfig]}
         size={'small'}
+        pagination={pagination}
+        onChange={handleTableChange}
         footer={getFooter}
       />
       <Drawer
