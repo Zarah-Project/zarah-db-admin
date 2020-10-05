@@ -24,7 +24,7 @@ const SelectWithExtraOption = ({label, formAction, field, serviceClass, placehol
   }, []);
 
   const fetchData = (search) => {
-    serviceClass.list(search).then((response) => {
+    serviceClass.list({search: search}).then((response) => {
       setOptions(response.data)
     })
   };
