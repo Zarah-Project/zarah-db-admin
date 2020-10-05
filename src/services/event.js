@@ -1,8 +1,8 @@
 import API from './api';
 
 class Event {
-  list = (search, cancelToken) => {
-    return API.get('/v1/authority/events/', {params: {search: search}, cancelToken: cancelToken});
+  list = (params, cancelToken) => {
+    return API.get('/v1/authority/events/', {params: params, cancelToken: cancelToken});
   };
 
   read = (recordID) => {

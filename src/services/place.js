@@ -1,8 +1,8 @@
 import API from './api';
 
 class Place {
-  list = (search, cancelToken) => {
-    return API.get('/v1/authority/places/', {params: {search: search}, cancelToken: cancelToken});
+  list = (params, cancelToken) => {
+    return API.get('/v1/authority/places/', {params: params, cancelToken: cancelToken});
   };
 
   read = (recordID) => {

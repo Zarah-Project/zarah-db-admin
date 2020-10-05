@@ -1,8 +1,8 @@
 import API from './api';
 
 class Organisation {
-  list = (search, cancelToken) => {
-    return API.get('/v1/authority/organisations/', {params: {search: search}, cancelToken: cancelToken});
+  list = (params, cancelToken) => {
+    return API.get('/v1/authority/organisations/', {params: params, cancelToken: cancelToken});
   };
 
   read = (recordID) => {

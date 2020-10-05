@@ -9,11 +9,13 @@ const OrganisationList = (props) => {
       dataIndex: 'name',
       key: 'name',
       ellipsis: false,
+      sorter: true
     }, {
       title: 'Acronym',
       dataIndex: 'acronym',
       key: 'acronym',
       ellipsis: false,
+      sorter: true
     }
   ];
 

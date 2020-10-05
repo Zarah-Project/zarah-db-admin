@@ -9,18 +9,21 @@ const EventList = (props) => {
       dataIndex: 'event',
       key: 'event',
       ellipsis: false,
+      sorter: true
     }, {
       title: 'Date From',
       dataIndex: 'date_from',
       key: 'date_from',
       width: 200,
       ellipsis: false,
+      sorter: true
     }, {
       title: 'Date To',
       dataIndex: 'date_to',
       key: 'date_to',
       width: 200,
       ellipsis: false,
+      sorter: true
     }
   ];
 

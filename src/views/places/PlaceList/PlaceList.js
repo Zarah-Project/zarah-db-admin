@@ -8,11 +8,13 @@ const PlaceList = (props) => {
       title: 'Place',
       dataIndex: 'place_name',
       key: 'place_name',
+      sorter: 'true',
       ellipsis: false,
     }, {
       title: 'Country / Kindgom',
       dataIndex: 'country',
       key: 'country',
+      sorter: true,
       ellipsis: false,
     }
   ];

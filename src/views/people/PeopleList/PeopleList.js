@@ -8,6 +8,8 @@ const PeopleList = (props) => {
       title: 'Name',
       dataIndex: 'full_name',
       key: 'full_name',
+      sorter: true,
+      sortKeys: ['last_name', 'first_name'],
       ellipsis: false,
     },
   ];
