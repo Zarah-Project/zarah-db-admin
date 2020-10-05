@@ -7,6 +7,7 @@ const breadcrumbs = {
   '/documents/view': ['Documents', 'View'],
   '/documents/edit': ['Documents', 'Edit'],
   '/documents/create': ['Documents', 'Create'],
+  '/events': ['Chronology'],
   '/people': ['People'],
   '/organisations': ['Organisations'],
   '/places': ['Places']
