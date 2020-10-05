@@ -5,6 +5,7 @@ import api from '../../../services/api';
 import document from '../../../services/document';
 import { CopyOutlined, EditOutlined, FolderViewOutlined, DeleteOutlined } from "@ant-design/icons";
 import {Link} from "react-router-dom";
+import history from "../../../utils/history";
 import searchStyle from './DocumentList.module.css';
 
 const DocumentList = () => {
@@ -129,14 +130,36 @@ const DocumentList = () => {
     }
   ];
 
+  const getCreateEmptyButton = () => {
+    const clickCreateEmpty = () => {
+      localStorage.removeItem('document-create-form');
+      history.push('/documents/create');
+    };
+
+    if (localStorage.hasOwnProperty('document-create-form')) {
+      return (
+        <Button
+          type={'secondary'}
+          style={{marginLeft: '10px'}}
+          onClick={clickCreateEmpty}
+        >
+          Create Empty
+        </Button>
+      )
+    }
+  };
+
   const getFooter = () => (
-    <Link to={'/documents/create'}>
-      <Button
-        type={'primary'}
-      >
-        Create
-      </Button>
-    </Link>
+    <React.Fragment>
+      <Link to={'/documents/create'}>
+        <Button
+          type={'primary'}
+        >
+          Create
+        </Button>
+      </Link>
+      {getCreateEmptyButton()}
+    </React.Fragment>
   );
 
   const handleSearch = (value) => {
