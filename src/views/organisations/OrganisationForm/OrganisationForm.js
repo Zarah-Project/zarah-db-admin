@@ -86,6 +86,13 @@ const OrganisationForm = ({action, formType='simple', recordID, onClose, ...prop
           </Row>
           <Row gutter={10}>
             <Col span={24}>
+              <FormItem name={'internal_notes'} label="Internal Notes">
+                <Input.TextArea rows={4} name={'internal_notes'} disabled={action === 'view'} className={style.FormInput}/>
+              </FormItem>
+            </Col>
+          </Row>
+          <Row gutter={10}>
+            <Col span={24}>
               <RemoteSelect
                 label={'Organisation form'}
                 serviceClass={organisation.selectForms}

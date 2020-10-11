@@ -89,6 +89,13 @@ const EventForm = ({action, formType='simple', recordID, onClose, ...props}) => 
               </FormItem>
             </Col>
           </Row>
+          <Row gutter={10}>
+            <Col span={24}>
+              <FormItem name={'internal_notes'} label="Internal Notes">
+                <Input.TextArea rows={4} name={'internal_notes'} disabled={action === 'view'} className={style.FormInput}/>
+              </FormItem>
+            </Col>
+          </Row>
           {
             action !== 'view' &&
             <Button
