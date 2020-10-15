@@ -1,0 +1,9 @@
+.SelectDisabled {
+    background-color: #f5f5f5;
+    cursor: text;
+}
+
+.SelectDisabled :global .ant-select-selector {
+    color: inherit !important;
+    border: none !important;
+}

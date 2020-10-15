@@ -1,0 +1,7 @@
+.RelatedDocument {
+    border-bottom: 1px dotted;
+}
+
+.RelatedDocument:hover {
+    cursor: pointer;
+}

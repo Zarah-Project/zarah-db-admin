@@ -1,0 +1,26 @@
+.Logo {
+    width: 120px;
+    height: 64px;
+    padding: 10px;
+    margin-right: 15px;
+    float: left;
+    line-height: 48px;
+    color: #DDD;
+    text-align: center;
+    background-color: #FFF;
+}
+
+.Logo img {
+    width: 100%;
+}
+
+.Content {
+    background-color: #FFF;
+    height: 100%;
+    padding: 24px;
+    min-height: 380px;
+}
+
+:global .ant-form-item-explain {
+    margin-top: 0 !important;
+}
