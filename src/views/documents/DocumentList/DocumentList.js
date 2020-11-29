@@ -125,7 +125,8 @@ const DocumentList = () => {
       dataIndex: 'title',
       key: 'title',
       ellipsis: false,
-      sorter: true
+      sorter: true,
+      sortKeys: ['title_sort'],
     }, {
       title: 'Item Type',
       dataIndex: 'item_type',
@@ -140,7 +141,8 @@ const DocumentList = () => {
       title: 'Year',
       dataIndex: 'year',
       key: 'year',
-      sorter: true
+      sorter: true,
+      sortKeys: ['date_sort'],
     }, {
       title: 'Created By',
       dataIndex: 'created_by',
