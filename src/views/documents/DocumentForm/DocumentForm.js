@@ -214,7 +214,7 @@ const DocumentForm = ({action, ...props}) => {
               <Row style={{textAlign: 'center'}}>
                 <Col md={24} xs={24}>
                   <FormItem label="Privacy options for document reproduction" name={'attachment_type'}>
-                    <Radio.Group name={'attachment_type'} defaultValue="default" buttonStyle="solid" disabled={action === 'view'}>
+                    <Radio.Group name={'attachment_type'} defaultValue="team" buttonStyle="solid" disabled={action === 'view'}>
                       <Radio.Button value="default">Public</Radio.Button>
                       <Radio.Button value="team">Team</Radio.Button>
                       <Radio.Button value="individual">Individual</Radio.Button>
