@@ -9,7 +9,7 @@
     "@testing-library/user-event": "^7.1.2",
     "antd": "^4.3.3",
     "antd-dayjs-webpack-plugin": "^1.0.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "axios-jwt": "^1.2.0",
     "babel-plugin-import": "^1.13.0",
     "color-hash": "^1.0.3",
