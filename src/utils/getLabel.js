@@ -139,7 +139,7 @@ const fieldLabelConfig = {
     access: ['public', 'public', 'team']
   },
   historical_context_explanation: {
-    label: 'Further explanation of historical context',
+    label: 'Further explanation of historical context (including reflections on gender and labour regime)',
     access: ['team', 'team', 'team']
   },
   activism_broad_patterns: {
