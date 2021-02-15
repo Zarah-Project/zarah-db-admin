@@ -26,7 +26,7 @@ import { PersistFormikValues } from 'formik-persist-values';
 const { Panel } = Collapse;
 
 const initialValues = {
-  record_type: "default",
+  record_type: "team",
   title: '',
   item_type: '',
   dates: [{date_from: '', date_to: '', event: ''}],
