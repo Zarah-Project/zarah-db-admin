@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Button, Col, Input, Modal, Row, Table, Tooltip} from "antd";
+import {Badge, Button, Col, Input, Modal, Row, Table, Tooltip} from "antd";
 import style from "../../../components/FormComponents/ZoteroSearch/ZoteroItems.module.css";
 import api from '../../../services/api';
 import document from '../../../services/document';
@@ -13,6 +13,7 @@ import setTablePagination from "../../../store/actions/setTablePagination";
 import setTableTotal from "../../../store/actions/setTableTotal";
 import {initPagination, loadPagination, loadSorter} from "../../../utils/tableUtils";
 import setTableSearch from "../../../store/actions/setTableSearch";
+import { FlagTwoTone } from '@ant-design/icons';
 
 const DocumentList = () => {
   const [loading, setLoading] = useState(false);
@@ -88,6 +89,31 @@ const DocumentList = () => {
     });
   };
 
+  const renderPrivacy = (text) => {
+    switch (text) {
+      case 'default':
+        return (
+          <div style={{textAlign: 'center'}}>
+            <FlagTwoTone twoToneColor={'#45a321'}/>
+          </div>
+        );
+      case 'team':
+        return (
+          <div style={{textAlign: 'center'}}>
+            <FlagTwoTone twoToneColor={'#c8b800'}/>
+          </div>
+        );
+      case 'individual':
+        return (
+          <div style={{textAlign: 'center'}}>
+            <FlagTwoTone twoToneColor={'#ed4600'}/>
+          </div>
+        );
+      default:
+        break;
+    }
+  };
+
   const renderActionButtons = (row) => {
     return (
       <React.Fragment>
@@ -147,6 +173,7 @@ const DocumentList = () => {
       title: 'Created By',
       dataIndex: 'created_by',
       key: 'created_by',
+      width: 120,
       sorter: true,
       sortKeys: ['created_by_sort', 'title_sort']
     }, {
@@ -154,6 +181,16 @@ const DocumentList = () => {
       render: renderActionButtons,
       width: 130,
       className: style.ActionColumn
+    }, {
+      title: 'Meta',
+      render: renderPrivacy,
+      dataIndex: 'metadata_privacy',
+      key: 'metadata_privacy',
+    }, {
+      title: 'PDF',
+      render: renderPrivacy,
+      dataIndex: 'document_privacy',
+      key: 'document_privacy',
     }
   ];
 
