@@ -146,7 +146,9 @@ const DocumentList = () => {
     }, {
       title: 'Created By',
       dataIndex: 'created_by',
-      key: 'created_by'
+      key: 'created_by',
+      sorter: true,
+      sortKeys: ['created_by_sort', 'title_sort']
     }, {
       title: 'Actions',
       render: renderActionButtons,
