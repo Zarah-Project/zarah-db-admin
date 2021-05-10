@@ -105,9 +105,7 @@ const PeopleForm = ({action, formType='simple', recordID, onClose, ...props}) =>
                         <Button
                           type={'secondary'}
                           onClick={() => {
-                            if (idx > 0) {
-                              arrayHelpers.remove(idx)
-                            }
+                            arrayHelpers.remove(idx)
                           }}
                         >
                           <CloseOutlined/>
