@@ -50,11 +50,11 @@ const PlaceForm = ({action, formType='simple', recordID, onClose, ...props}) => 
   };
 
   const renderOtherNames = (values) => {
-    const otherNames = values['other_names'] && values['other_names'] > 0 ? values['other_names'] : [{place_name: ''}];
+    const otherNames = values['other_names'] && values['other_names'].length > 0 ? values['other_names'] : [{place_name: ''}];
 
     const onAdd = (arrayHelpers) => {
-      const placeName = otherNames.slice(-1)[0];
-      if (placeName['place_name'] !== '') {
+      const otherName = otherNames.slice(-1)[0];
+      if (otherName['place_name'] !== '') {
         arrayHelpers.push({place_name: ''})
       }
     };
@@ -86,9 +86,7 @@ const PlaceForm = ({action, formType='simple', recordID, onClose, ...props}) => 
                         <Button
                           type={'secondary'}
                           onClick={() => {
-                            if (idx > 0) {
-                              arrayHelpers.remove(idx)
-                            }
+                            arrayHelpers.remove(idx)
                           }}
                         >
                           <CloseOutlined/>
