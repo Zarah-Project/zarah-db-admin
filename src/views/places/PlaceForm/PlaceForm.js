@@ -6,6 +6,7 @@ import { CloseOutlined } from '@ant-design/icons';
 import style from "../../documents/DocumentForm/DocumentForm.module.css";
 import place from '../../../services/place';
 import validation from "./validation/validation";
+import Label from "../../../components/FormComponents/Label/Label";
 
 const PlaceForm = ({action, formType='simple', recordID, onClose, ...props}) => {
   const [loading, setLoading] = useState(false);
@@ -52,14 +53,15 @@ const PlaceForm = ({action, formType='simple', recordID, onClose, ...props}) => 
     const otherNames = values['other_names'] && values['other_names'] > 0 ? values['other_names'] : [{place_name: ''}];
 
     const onAdd = (arrayHelpers) => {
-      const lastName = otherNames.slice(-1)[0];
-      if (lastName['place_name'] !== '') {
+      const placeName = otherNames.slice(-1)[0];
+      if (placeName['place_name'] !== '') {
         arrayHelpers.push({place_name: ''})
       }
     };
 
     return (
-      <FormItem label="Other name(s)" name={'other_names'}>
+      <React.Fragment>
+        <Label label={'Other form of name(s)'} />
         <FieldArray
           name={'other_names'}
           style={{marginBottom: 0}}
@@ -69,13 +71,15 @@ const PlaceForm = ({action, formType='simple', recordID, onClose, ...props}) => 
                 otherNames.map((otherName, idx) => (
                   <Row key={idx} gutter={10} style={{marginBottom: '10px'}}>
                     <Col span={22}>
-                      <Input
-                        name={`other_names[${idx}].place_name`}
-                        placeholder={'Place'}
-                        style={{width: '100%'}}
-                        disabled={action === 'view'}
-                        className={style.FormInput}
-                      />
+                      <FormItem name={`other_names[${idx}].place_name`}>
+                        <Input
+                          name={`other_names[${idx}].place_name`}
+                          placeholder={'Place'}
+                          style={{width: '100%'}}
+                          disabled={action === 'view'}
+                          className={style.FormInput}
+                        />
+                      </FormItem>
                     </Col>
                     <Col span={2}>
                       { action !== 'view' ?
@@ -106,7 +110,7 @@ const PlaceForm = ({action, formType='simple', recordID, onClose, ...props}) => 
             </React.Fragment>
           )}
         />
-      </FormItem>
+      </React.Fragment>
     )
   };
 
