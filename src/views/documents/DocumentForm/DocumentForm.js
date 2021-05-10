@@ -241,7 +241,7 @@ const DocumentForm = ({action, ...props}) => {
                       setFieldValue={setFieldValue}
                     />
                   </Panel>
-                  <Panel header="Authorities" key="2" className={style.Panel}>
+                  <Panel header="Special Records" key="2" className={style.Panel}>
                     <AuthorityForm
                       action={action}
                       values={values}
