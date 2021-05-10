@@ -49,7 +49,7 @@ const PlaceForm = ({action, formType='simple', recordID, onClose, ...props}) => 
   };
 
   const renderOtherNames = (values) => {
-    const otherNames = values['other_names'] && values['other_name'] > 0 ? values['other_names'] : [{place_name: ''}];
+    const otherNames = values['other_names'] && values['other_names'] > 0 ? values['other_names'] : [{place_name: ''}];
 
     const onAdd = (arrayHelpers) => {
       const lastName = otherNames.slice(-1)[0];
