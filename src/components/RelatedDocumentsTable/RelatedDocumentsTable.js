@@ -4,13 +4,14 @@ import {Table} from "antd";
 import api from "../../services/api";
 import style from "./RelatedDocumentsTable.module.css";
 import {useDidMountEffect} from "../../utils/useDidMountEffect";
+import {initPagination} from "../../utils/tableUtils";
 
 const RelatedDocumentTable = ({formType, recordID, ...props}) => {
   const [params, setParams] = useState({});
+  const [pagination, setPagination] = useState(initPagination());
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    console.log(recordID);
     if (recordID) {
       switch (formType) {
         case 'person':
@@ -44,7 +45,13 @@ const RelatedDocumentTable = ({formType, recordID, ...props}) => {
   const fetchData = (params) => {
     document.list(params).then((response) => {
       setData(response.data.results);
-    })
+      setPagination(prevPagination => {
+        return {
+          ...prevPagination,
+          total: response.data.count
+        }
+      })
+    });
   };
 
   const onClick = (id) => {
@@ -125,6 +132,7 @@ const RelatedDocumentTable = ({formType, recordID, ...props}) => {
       dataSource={data}
       columns={columns}
       size={'small'}
+      pagination={pagination}
       onChange={handleTableChange}
     />
   )
