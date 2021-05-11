@@ -27,6 +27,9 @@ const PlaceForm = ({action, formType='simple', recordID, onClose, ...props}) => 
   const handleSubmit = (values, formik) => {
     setLoading(true);
 
+    let {other_names} = values;
+    values['other_names'] = other_names.filter(value => value.place_name !== '');
+
     switch(action) {
       case 'create':
         place.create(values).then((response) => {
