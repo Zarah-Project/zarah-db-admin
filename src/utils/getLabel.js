@@ -67,7 +67,7 @@ const fieldLabelConfig = {
     access: ['public', 'team', 'team']
   },
   organisations: {
-    label: 'Organisations',
+    label: 'Organizations',
     access: ['public', 'team', 'team']
   },
   activist_repertoire: {

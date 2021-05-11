@@ -29,7 +29,7 @@ const DefaultLayout = () => {
               <Link to={'/people'}>People</Link>
             </Menu.Item>
           <Menu.Item key="4">
-            <Link to={'/organisations'}>Organisations</Link>
+            <Link to={'/organisations'}>Organizations</Link>
           </Menu.Item>
           <Menu.Item key="5">
             <Link to={'/places'}>Places</Link>

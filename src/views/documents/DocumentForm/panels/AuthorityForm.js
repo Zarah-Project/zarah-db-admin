@@ -57,7 +57,7 @@ const AuthorityForm = ({values, action, ...props}) => {
           valueField={'id'}
           labelField={'full_name'}
           recordName={'organisation'}
-          placeholder={'- Select organisation -'}
+          placeholder={'- Select organization -'}
           serviceClass={organisation}
           color={'warning'}
         />

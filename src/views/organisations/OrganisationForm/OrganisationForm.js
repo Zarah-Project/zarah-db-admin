@@ -94,11 +94,12 @@ const OrganisationForm = ({action, formType='simple', recordID, onClose, ...prop
           <Row gutter={10}>
             <Col span={24}>
               <RemoteSelect
-                label={'Organisation form'}
+                label={'Organis' +
+                '`ation form'}
                 serviceClass={organisation.selectForms}
                 valueField={'id'}
                 labelField={'form'}
-                placeholder={'- Select organisation form -'}
+                placeholder={'- Select organization form -'}
                 field={'organisation_form'}
                 action={action}
                 className={style.FormInput}
@@ -110,7 +111,7 @@ const OrganisationForm = ({action, formType='simple', recordID, onClose, ...prop
                 <FormItem name={'organisation_form_text'} >
                   <Input
                     name={'organisation_form_text'}
-                    placeholder={'Organisation form (other)'}
+                    placeholder={'Organization form (other)'}
                     disabled={action === 'view'}
                     className={style.FormInput}
                   />
@@ -125,7 +126,7 @@ const OrganisationForm = ({action, formType='simple', recordID, onClose, ...prop
                 serviceClass={organisation.selectFormScales}
                 valueField={'id'}
                 labelField={'scale'}
-                placeholder={'- Select organisation form scale -'}
+                placeholder={'- Select organization form scale -'}
                 field={'organisation_form_scale'}
                 disabled={action === 'view'}
                 action={action}
@@ -146,11 +147,11 @@ const OrganisationForm = ({action, formType='simple', recordID, onClose, ...prop
             </Col>
             <Col span={24}>
               <RemoteSelect
-                label={'Organisation gendered membership'}
+                label={'Organization gendered membership'}
                 serviceClass={organisation.selectGenderedMemberships}
                 valueField={'id'}
                 labelField={'membership'}
-                placeholder={'- Select organisation gendered membership -'}
+                placeholder={'- Select organization gendered membership -'}
                 field={'organisation_gendered_membership'}
                 action={action}
                 className={style.FormInput}
@@ -161,7 +162,7 @@ const OrganisationForm = ({action, formType='simple', recordID, onClose, ...prop
                   <FormItem name={'organisation_gendered_membership_text'} >
                     <Input
                       name={'organisation_gendered_membership_text'}
-                      placeholder={'Organisation gendered membership (other)'}
+                      placeholder={'Organization gendered membership (other)'}
                       disabled={action === 'view'}
                       className={style.FormInput}
                     />
