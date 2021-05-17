@@ -12,7 +12,10 @@ const PlaceForm = ({action, formType='simple', recordID, onClose, ...props}) => 
   const [loading, setLoading] = useState(false);
   const [initialData, setInitialData] = useState({
     place_name: '',
-    notes: ''
+    notes: '',
+    other_names: [{
+      place_name: '',
+    }]
   });
 
   useEffect(() => {
