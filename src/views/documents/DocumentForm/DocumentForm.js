@@ -67,11 +67,9 @@ const DocumentForm = ({action, ...props}) => {
         });
         break;
       case 'edit':
-        if (localStorage.getItem(`document-edit-form-${recordID}`) === null) {
-          document.read(recordID).then((response) => {
-            setInitialData(decodeValues(response.data));
-          });
-        }
+        document.read(recordID).then((response) => {
+          setInitialData(decodeValues(response.data));
+        });
         break;
       default:
         break;
@@ -150,7 +148,6 @@ const DocumentForm = ({action, ...props}) => {
       case 'edit':
         document.edit(recordID, encodeValues(values)).then((response) => {
           successAlert();
-          // localStorage.removeItem(`document-edit-form-${recordID}`);
           props.history.push('/documents');
         }).catch(error => {
           errorAlert();
@@ -184,8 +181,6 @@ const DocumentForm = ({action, ...props}) => {
     switch (action) {
       case 'create':
         return <PersistFormikValues name="document-create-form" />;
-      // case 'edit':
-      //   return <PersistFormikValues name={`document-edit-form-${recordID}`} />;
       default:
         return '';
     }
