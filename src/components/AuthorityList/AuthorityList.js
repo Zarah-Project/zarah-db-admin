@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Button, Col, Drawer, Table, Tooltip, Modal} from "antd";
+import {Button, Col, Drawer, Table, Tooltip, Modal, Badge} from "antd";
 import style from "../../components/FormComponents/ZoteroSearch/ZoteroItems.module.css";
 import { EditOutlined, FolderViewOutlined, DeleteOutlined } from "@ant-design/icons";
 import PeopleForm from "../../views/people/PeopleForm/PeopleForm";
@@ -97,6 +97,12 @@ const AuthorityList = ({formType, columns, dataKey, serviceClass, ...props}) => 
     }
   };
 
+  const renderVisibility = (row) => {
+    return row.is_public_user ?
+      <Badge count={'Public'} style={{ backgroundColor: '#36771a' }}/> :
+      <Badge count={'Private'} style={{ backgroundColor: '#ffd100' }}/>
+  };
+
   const columnsConfig = [
     {
       title: 'Appears in',
@@ -107,6 +113,11 @@ const AuthorityList = ({formType, columns, dataKey, serviceClass, ...props}) => 
       title: 'Actions',
       render: renderActionButtons,
       width: 100,
+      className: style.ActionColumn
+    }, {
+      title: 'Visibility',
+      width: 100,
+      render: renderVisibility,
       className: style.ActionColumn
     }
   ];

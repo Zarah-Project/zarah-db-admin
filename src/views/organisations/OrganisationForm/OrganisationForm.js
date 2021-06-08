@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {Button, Col, Row} from "antd";
 import {Formik} from "formik";
-import {Form, FormItem, Input} from "formik-antd";
+import {Form, FormItem, Input, Switch} from "formik-antd";
 import style from "../../documents/DocumentForm/DocumentForm.module.css";
 import organisation from '../../../services/organisation';
 import RemoteSelect from "../../../components/FormComponents/RemoteSelect/RemoteSelect";
@@ -171,6 +171,16 @@ const OrganisationForm = ({action, formType='simple', recordID, onClose, ...prop
               }
             </Col>
           </Row>
+          {
+            initialData.hasOwnProperty('is_public') &&
+            <Row gutter={10}>
+              <Col span={24}>
+                <FormItem name={'is_public'} label="Visibility">
+                  <Switch name={'is_public'} checkedChildren="Public" unCheckedChildren="Private" defaultChecked />
+                </FormItem>
+              </Col>
+            </Row>
+          }
           {action !== 'view' &&
             <Button
               type="primary"
