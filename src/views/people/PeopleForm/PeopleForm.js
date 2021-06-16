@@ -7,6 +7,7 @@ import style from "../../documents/DocumentForm/DocumentForm.module.css";
 import person from '../../../services/person';
 import validation from "./validation/validation";
 import Label from "../../../components/FormComponents/Label/Label";
+import FormattedTextArea from "../../../components/FormComponents/FormattedTextArea/FormattedTextArea";
 
 const PeopleForm = ({action, formType='simple', recordID, onClose, ...props}) => {
   const [loading, setLoading] = useState(false);
@@ -158,7 +159,7 @@ const PeopleForm = ({action, formType='simple', recordID, onClose, ...props}) =>
           <Row gutter={10}>
             <Col span={24}>
               <FormItem name={'notes'} label="Notes">
-                <Input.TextArea rows={4} name={'notes'} disabled={action === 'view'} className={style.FormInput}/>
+                <FormattedTextArea name={'notes'} disabled={action === 'view'} rows={4} />
               </FormItem>
             </Col>
           </Row>

@@ -6,6 +6,8 @@ import style from "../../documents/DocumentForm/DocumentForm.module.css";
 import organisation from '../../../services/organisation';
 import RemoteSelect from "../../../components/FormComponents/RemoteSelect/RemoteSelect";
 import validation from "./validation/validation";
+import getLabel from "../../../utils/getLabel";
+import FormattedTextArea from "../../../components/FormComponents/FormattedTextArea/FormattedTextArea";
 
 const OrganisationForm = ({action, formType='simple', recordID, onClose, ...props}) => {
   const [loading, setLoading] = useState(false);
@@ -80,7 +82,7 @@ const OrganisationForm = ({action, formType='simple', recordID, onClose, ...prop
           <Row gutter={10}>
             <Col span={24}>
               <FormItem name={'notes'} label="Notes">
-                <Input.TextArea rows={4} name={'notes'} disabled={action === 'view'} className={style.FormInput}/>
+                <FormattedTextArea name={'notes'} disabled={action === 'view'} rows={4} />
               </FormItem>
             </Col>
           </Row>
@@ -94,8 +96,7 @@ const OrganisationForm = ({action, formType='simple', recordID, onClose, ...prop
           <Row gutter={10}>
             <Col span={24}>
               <RemoteSelect
-                label={'Organis' +
-                '`ation form'}
+                label={'Organisation form'}
                 serviceClass={organisation.selectForms}
                 valueField={'id'}
                 labelField={'form'}
