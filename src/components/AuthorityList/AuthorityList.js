@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Button, Col, Drawer, Table, Tooltip, Modal, Badge} from "antd";
+import {Button, Col, Drawer, Table, Tooltip, Modal, Badge, Row, Input} from "antd";
 import style from "../../components/FormComponents/ZoteroSearch/ZoteroItems.module.css";
 import { EditOutlined, FolderViewOutlined, DeleteOutlined } from "@ant-design/icons";
 import PeopleForm from "../../views/people/PeopleForm/PeopleForm";
@@ -10,6 +10,7 @@ import OrganisationForm from "../../views/organisations/OrganisationForm/Organis
 import PlaceForm from "../../views/places/PlaceForm/PlaceForm";
 import EventForm from "../../views/events/EventForm/EventForm";
 import api from "../../services/api";
+import searchStyle from "../../views/documents/DocumentList/DocumentList.module.css";
 
 const AuthorityList = ({formType, columns, dataKey, serviceClass, ...props}) => {
   const [loading, setLoading] = useState(false);
@@ -20,6 +21,8 @@ const AuthorityList = ({formType, columns, dataKey, serviceClass, ...props}) => 
   const [selectedValue, setSelectedValue] = useState(undefined);
   const [selectedData, setSelectedData] = useState(undefined);
   const [action, setAction] = useState('view');
+
+  const { Search } = Input;
 
   useEffect(() => {
     const source = api.CancelToken.source();
@@ -242,8 +245,32 @@ const AuthorityList = ({formType, columns, dataKey, serviceClass, ...props}) => 
     setParams(Object.assign({}, params, paginationParams, sorterParams))
   };
 
+  const handleSearch = (value) => {
+    setLoading(true);
+
+    if (value) {
+      setParams(Object.assign({}, params, {'search': value}));
+    } else {
+      setParams({});
+    }
+  };
+
   return (
     <Col span={24}>
+      <div className={searchStyle.SearchBox}>
+        <Row>
+          <Col span={24}>
+            <Search
+              placeholder="Search..."
+              onSearch={handleSearch}
+              loading={loading}
+              defaultValue={params ? params['search'] : undefined}
+              allowClear
+              enterButton
+            />
+          </Col>
+        </Row>
+      </div>
       <Table
         loading={loading}
         style={{marginTop: '20px'}}
