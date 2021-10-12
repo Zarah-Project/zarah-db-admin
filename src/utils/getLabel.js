@@ -18,6 +18,10 @@ const fieldLabelConfig = {
     label: 'Author (Zotero)',
     access: ['public', 'public', 'public']
   },
+  zotero_publication_title: {
+    label: 'Publication Title (Zotero)',
+    access: ['public', 'public', 'public']
+  },
   zotero_date: {
     label: 'Date (Zotero)',
     access: ['public', 'public', 'public']
