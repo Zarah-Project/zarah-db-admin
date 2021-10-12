@@ -96,7 +96,7 @@ const OrganisationForm = ({action, formType='simple', recordID, onClose, ...prop
           <Row gutter={10}>
             <Col span={24}>
               <RemoteSelect
-                label={'Organisation form'}
+                label={'Organization form'}
                 serviceClass={organisation.selectForms}
                 valueField={'id'}
                 labelField={'form'}
@@ -123,7 +123,7 @@ const OrganisationForm = ({action, formType='simple', recordID, onClose, ...prop
           <Row gutter={10}>
             <Col span={24}>
               <RemoteSelect
-                label={'Organisation form scale'}
+                label={'Organization form scale'}
                 serviceClass={organisation.selectFormScales}
                 valueField={'id'}
                 labelField={'scale'}
@@ -138,7 +138,7 @@ const OrganisationForm = ({action, formType='simple', recordID, onClose, ...prop
                   <FormItem name={'organisation_form_scale_text'} >
                     <Input
                       name={'organisation_form_scale_text'}
-                      placeholder={'Organisation form scale (other)'}
+                      placeholder={'Organization form scale (other)'}
                       disabled={action === 'view'}
                       className={style.FormInput}
                     />
