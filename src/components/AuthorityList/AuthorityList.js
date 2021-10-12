@@ -34,6 +34,7 @@ const AuthorityList = ({formType, columns, dataKey, serviceClass, ...props}) => 
   }, [params]);
 
   const fetchData = (params, cancelToken) => {
+    setLoading(true);
     serviceClass.list(params, cancelToken).then((response) => {
       setLoading(false);
       setData(response.data);
@@ -246,8 +247,6 @@ const AuthorityList = ({formType, columns, dataKey, serviceClass, ...props}) => 
   };
 
   const handleSearch = (value) => {
-    setLoading(true);
-
     if (value) {
       setParams(Object.assign({}, params, {'search': value}));
     } else {
@@ -263,7 +262,6 @@ const AuthorityList = ({formType, columns, dataKey, serviceClass, ...props}) => 
             <Search
               placeholder="Search..."
               onSearch={handleSearch}
-              loading={loading}
               defaultValue={params ? params['search'] : undefined}
               allowClear
               enterButton

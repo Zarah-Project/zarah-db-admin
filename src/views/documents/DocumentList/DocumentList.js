@@ -48,6 +48,7 @@ const DocumentList = () => {
   }, [params]);
 
   const fetchData = (params, cancelToken) => {
+    setLoading(true);
     document.search(params, cancelToken).then((response) => {
       setLoading(false);
       dispatch(setTableTotal(response.data.count, 'documents'));
@@ -244,8 +245,6 @@ const DocumentList = () => {
   };
 
   const handleSearch = (value) => {
-    setLoading(true);
-
     if (value) {
       setParams(Object.assign({}, params, {'query': value}));
     } else {
@@ -287,7 +286,6 @@ const DocumentList = () => {
             <Search
               placeholder="Search..."
               onSearch={handleSearch}
-              loading={loading}
               defaultValue={tableProps ? tableProps['search'] : undefined}
               allowClear
               enterButton
@@ -301,6 +299,7 @@ const DocumentList = () => {
         rowKey={record => record.id}
         dataSource={data}
         columns={columns}
+        loading={loading}
         size={'small'}
         pagination={tableProps ? tableProps['pagination'] : {}}
         onChange={handleTableChange}
