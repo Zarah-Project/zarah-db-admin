@@ -25,6 +25,23 @@ const ConsentSelect = ({values, action, ...props}) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const getHelper = (consent) => {
+    switch (consent['key']) {
+      case 'cc_q2':
+        return (
+          <span>
+            If you answered YES to either of the two questions above, please proceed to next question.<br/>
+            (NB: For any one item, if one of the two answers above is Yes, the other answer must be No.)
+          </span>
+        )
+      case 'cc_q3':
+        return (
+          <span>If the answer here is NO, just skip the following question.</span>
+        )
+
+    }
+  }
+
   return (
     <React.Fragment>
       <Label label={getLabel('interview_consents', values)}/>
@@ -99,10 +116,18 @@ const ConsentSelect = ({values, action, ...props}) => {
                 <Radio value={true} name={`consents.${consent.key}.consent`}>Yes</Radio>
                 <Radio value={false} name={`consents.${consent.key}.consent`}>No</Radio>
               </Radio.Group>
+              <div style={{fontSize: '11px', fontStyle: 'italic', textAlign: 'right'}}>
+                {getHelper(consent)}
+              </div>
             </FormItem>
           )
         })
       }
+      <br/>
+      <div>
+        In all cases, please double check the relevant ZARAH Permission Forms before choosing.<br/>
+        Also, please inquire with team member in charge of ethics when in doubt.
+      </div>
       <br/>
       {
         consentsDocument.map((consent, idx) => {
