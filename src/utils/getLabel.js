@@ -165,6 +165,10 @@ const fieldLabelConfig = {
   document_permissions: {
     label: 'Document permissions',
     access: ['team', 'team', 'private']
+  },
+  cc: {
+    label: 'Creative Commons License display',
+    access: ['team', 'team', 'private']
   }
 };
 
