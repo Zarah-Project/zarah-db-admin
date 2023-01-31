@@ -36,6 +36,11 @@ const BaseForm = ({values, setFieldValue, action, ...props}) => {
           <Input name={'zotero_author'} disabled={true} className={style.FormInput}/>
         </FormItem>
       </Col>
+      <Col md={24} xs={24}>
+        <FormItem label={getLabel('zotero_publication_title', values)} name={'zotero_publication_title'}>
+          <Input name={'zotero_publication_title'} disabled={true} className={style.FormInput}/>
+        </FormItem>
+      </Col>
       <Col md={12} xs={24}>
         <FormItem label={getLabel('zotero_date', values)} name={'zotero_date'}>
           <Input name={'zotero_date'} disabled={true} className={style.FormInput}/>

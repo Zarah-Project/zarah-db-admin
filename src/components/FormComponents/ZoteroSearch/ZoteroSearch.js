@@ -34,6 +34,7 @@ const ZoteroSearch = ({values, setFieldValue, action, ...props}) => {
 
     setFieldValue("zotero_archive", value['archive']);
     setFieldValue("zotero_loc_archive", value['archiveLocation']);
+    setFieldValue("zotero_publication_title", value['publicationTitle']);
 
     setFieldValue("abstract", value['abstractNote']);
 

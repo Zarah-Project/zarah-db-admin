@@ -42,7 +42,7 @@ const AuthorityForm = ({values, action, ...props}) => {
           field={'places'}
           label={getLabel('places', values)}
           valueField={'id'}
-          labelField={'place_name'}
+          labelField={'place_full'}
           recordName={'place'}
           placeholder={'- Select place -'}
           serviceClass={place}
@@ -57,7 +57,7 @@ const AuthorityForm = ({values, action, ...props}) => {
           valueField={'id'}
           labelField={'full_name'}
           recordName={'organisation'}
-          placeholder={'- Select organisation -'}
+          placeholder={'- Select organization -'}
           serviceClass={organisation}
           color={'warning'}
         />

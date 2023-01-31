@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Button, Col, Drawer, Table, Tooltip, Modal} from "antd";
+import {Button, Col, Drawer, Table, Tooltip, Modal, Badge, Row, Input} from "antd";
 import style from "../../components/FormComponents/ZoteroSearch/ZoteroItems.module.css";
 import { EditOutlined, FolderViewOutlined, DeleteOutlined } from "@ant-design/icons";
 import PeopleForm from "../../views/people/PeopleForm/PeopleForm";
@@ -10,6 +10,7 @@ import OrganisationForm from "../../views/organisations/OrganisationForm/Organis
 import PlaceForm from "../../views/places/PlaceForm/PlaceForm";
 import EventForm from "../../views/events/EventForm/EventForm";
 import api from "../../services/api";
+import searchStyle from "../../views/documents/DocumentList/DocumentList.module.css";
 
 const AuthorityList = ({formType, columns, dataKey, serviceClass, ...props}) => {
   const [loading, setLoading] = useState(false);
@@ -21,6 +22,8 @@ const AuthorityList = ({formType, columns, dataKey, serviceClass, ...props}) => 
   const [selectedData, setSelectedData] = useState(undefined);
   const [action, setAction] = useState('view');
 
+  const { Search } = Input;
+
   useEffect(() => {
     const source = api.CancelToken.source();
     fetchData(params, source.token);
@@ -31,6 +34,7 @@ const AuthorityList = ({formType, columns, dataKey, serviceClass, ...props}) => 
   }, [params]);
 
   const fetchData = (params, cancelToken) => {
+    setLoading(true);
     serviceClass.list(params, cancelToken).then((response) => {
       setLoading(false);
       setData(response.data);
@@ -97,6 +101,12 @@ const AuthorityList = ({formType, columns, dataKey, serviceClass, ...props}) => 
     }
   };
 
+  const renderVisibility = (row) => {
+    return row.is_public_user ?
+      <Badge count={'Public'} style={{ backgroundColor: '#36771a' }}/> :
+      <Badge count={'Private'} style={{ backgroundColor: '#ffd100' }}/>
+  };
+
   const columnsConfig = [
     {
       title: 'Appears in',
@@ -107,6 +117,11 @@ const AuthorityList = ({formType, columns, dataKey, serviceClass, ...props}) => 
       title: 'Actions',
       render: renderActionButtons,
       width: 100,
+      className: style.ActionColumn
+    }, {
+      title: 'Visibility',
+      width: 100,
+      render: renderVisibility,
       className: style.ActionColumn
     }
   ];
@@ -231,8 +246,29 @@ const AuthorityList = ({formType, columns, dataKey, serviceClass, ...props}) => 
     setParams(Object.assign({}, params, paginationParams, sorterParams))
   };
 
+  const handleSearch = (value) => {
+    if (value) {
+      setParams(Object.assign({}, params, {'search': value}));
+    } else {
+      setParams({});
+    }
+  };
+
   return (
     <Col span={24}>
+      <div className={searchStyle.SearchBox}>
+        <Row>
+          <Col span={24}>
+            <Search
+              placeholder="Search..."
+              onSearch={handleSearch}
+              defaultValue={params ? params['search'] : undefined}
+              allowClear
+              enterButton
+            />
+          </Col>
+        </Row>
+      </div>
       <Table
         loading={loading}
         style={{marginTop: '20px'}}

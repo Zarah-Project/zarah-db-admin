@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import {Button, Col, Row} from "antd";
 import {FieldArray, Formik} from "formik";
-import {Form, FormItem, Input} from "formik-antd";
+import {Form, FormItem, Input, Switch} from "formik-antd";
 import { CloseOutlined } from '@ant-design/icons';
 import style from "../../documents/DocumentForm/DocumentForm.module.css";
 import person from '../../../services/person';
 import validation from "./validation/validation";
 import Label from "../../../components/FormComponents/Label/Label";
+import FormattedTextArea from "../../../components/FormComponents/FormattedTextArea/FormattedTextArea";
 
 const PeopleForm = ({action, formType='simple', recordID, onClose, ...props}) => {
   const [loading, setLoading] = useState(false);
@@ -105,9 +106,7 @@ const PeopleForm = ({action, formType='simple', recordID, onClose, ...props}) =>
                         <Button
                           type={'secondary'}
                           onClick={() => {
-                            if (idx > 0) {
-                              arrayHelpers.remove(idx)
-                            }
+                            arrayHelpers.remove(idx)
                           }}
                         >
                           <CloseOutlined/>
@@ -160,7 +159,7 @@ const PeopleForm = ({action, formType='simple', recordID, onClose, ...props}) =>
           <Row gutter={10}>
             <Col span={24}>
               <FormItem name={'notes'} label="Notes">
-                <Input.TextArea rows={4} name={'notes'} disabled={action === 'view'} className={style.FormInput}/>
+                <FormattedTextArea name={'notes'} disabled={action === 'view'} rows={4} />
               </FormItem>
             </Col>
           </Row>
@@ -176,6 +175,16 @@ const PeopleForm = ({action, formType='simple', recordID, onClose, ...props}) =>
               {renderOtherNames(values)}
             </Col>
           </Row>
+          {
+            initialData.hasOwnProperty('is_public') &&
+            <Row gutter={10}>
+              <Col span={24}>
+                <FormItem name={'is_public'} label="Visibility">
+                  <Switch name={'is_public'} checkedChildren="Public" unCheckedChildren="Private" defaultChecked />
+                </FormItem>
+              </Col>
+            </Row>
+          }
           {
             action !== 'view' &&
             <Button

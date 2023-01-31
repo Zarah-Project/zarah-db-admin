@@ -26,7 +26,7 @@ import { PersistFormikValues } from 'formik-persist-values';
 const { Panel } = Collapse;
 
 const initialValues = {
-  record_type: "default",
+  record_type: "team",
   title: '',
   item_type: '',
   dates: [{date_from: '', date_to: '', event: ''}],
@@ -67,11 +67,9 @@ const DocumentForm = ({action, ...props}) => {
         });
         break;
       case 'edit':
-        if (localStorage.getItem(`document-edit-form-${recordID}`) === null) {
-          document.read(recordID).then((response) => {
-            setInitialData(decodeValues(response.data));
-          });
-        }
+        document.read(recordID).then((response) => {
+          setInitialData(decodeValues(response.data));
+        });
         break;
       default:
         break;
@@ -124,6 +122,7 @@ const DocumentForm = ({action, ...props}) => {
     setLoading(true);
 
     const handleError = (error) => {
+      console.log(error);
       const errors = error.response.data;
       const {non_field_errors, ...field_errors} = errors;
       if (non_field_errors) {
@@ -149,7 +148,6 @@ const DocumentForm = ({action, ...props}) => {
       case 'edit':
         document.edit(recordID, encodeValues(values)).then((response) => {
           successAlert();
-          localStorage.removeItem(`document-edit-form-${recordID}`);
           props.history.push('/documents');
         }).catch(error => {
           errorAlert();
@@ -183,8 +181,6 @@ const DocumentForm = ({action, ...props}) => {
     switch (action) {
       case 'create':
         return <PersistFormikValues name="document-create-form" />;
-      case 'edit':
-        return <PersistFormikValues name={`document-edit-form-${recordID}`} />;
       default:
         return '';
     }
@@ -214,7 +210,7 @@ const DocumentForm = ({action, ...props}) => {
               <Row style={{textAlign: 'center'}}>
                 <Col md={24} xs={24}>
                   <FormItem label="Privacy options for document reproduction" name={'attachment_type'}>
-                    <Radio.Group name={'attachment_type'} defaultValue="default" buttonStyle="solid" disabled={action === 'view'}>
+                    <Radio.Group name={'attachment_type'} defaultValue="team" buttonStyle="solid" disabled={action === 'view'}>
                       <Radio.Button value="default">Public</Radio.Button>
                       <Radio.Button value="team">Team</Radio.Button>
                       <Radio.Button value="individual">Individual</Radio.Button>
@@ -241,7 +237,7 @@ const DocumentForm = ({action, ...props}) => {
                       setFieldValue={setFieldValue}
                     />
                   </Panel>
-                  <Panel header="Authorities" key="2" className={style.Panel}>
+                  <Panel header="Special Records" key="2" className={style.Panel}>
                     <AuthorityForm
                       action={action}
                       values={values}

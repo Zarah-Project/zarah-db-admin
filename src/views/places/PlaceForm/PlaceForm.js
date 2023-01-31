@@ -1,17 +1,22 @@
 import React, {useEffect, useState} from 'react'
 import {Button, Col, Row} from "antd";
 import {FieldArray, Formik} from "formik";
-import {Form, FormItem, Input} from "formik-antd";
+import {Form, FormItem, Input, Switch} from "formik-antd";
 import { CloseOutlined } from '@ant-design/icons';
 import style from "../../documents/DocumentForm/DocumentForm.module.css";
 import place from '../../../services/place';
 import validation from "./validation/validation";
+import Label from "../../../components/FormComponents/Label/Label";
+import FormattedTextArea from "../../../components/FormComponents/FormattedTextArea/FormattedTextArea";
 
 const PlaceForm = ({action, formType='simple', recordID, onClose, ...props}) => {
   const [loading, setLoading] = useState(false);
   const [initialData, setInitialData] = useState({
     place_name: '',
-    notes: ''
+    notes: '',
+    other_names: [{
+      place_name: '',
+    }]
   });
 
   useEffect(() => {
@@ -25,6 +30,9 @@ const PlaceForm = ({action, formType='simple', recordID, onClose, ...props}) => 
 
   const handleSubmit = (values, formik) => {
     setLoading(true);
+
+    let {other_names} = values;
+    values['other_names'] = other_names.filter(value => value.place_name !== '');
 
     switch(action) {
       case 'create':
@@ -49,17 +57,18 @@ const PlaceForm = ({action, formType='simple', recordID, onClose, ...props}) => 
   };
 
   const renderOtherNames = (values) => {
-    const otherNames = values['other_names'] && values['other_name'] > 0 ? values['other_names'] : [{place_name: ''}];
+    const otherNames = values['other_names'] && values['other_names'].length > 0 ? values['other_names'] : [{place_name: ''}];
 
     const onAdd = (arrayHelpers) => {
-      const lastName = otherNames.slice(-1)[0];
-      if (lastName['place_name'] !== '') {
+      const otherName = otherNames.slice(-1)[0];
+      if (otherName['place_name'] !== '') {
         arrayHelpers.push({place_name: ''})
       }
     };
 
     return (
-      <FormItem label="Other name(s)" name={'other_names'}>
+      <React.Fragment>
+        <Label label={'Other form of name(s)'} />
         <FieldArray
           name={'other_names'}
           style={{marginBottom: 0}}
@@ -69,22 +78,22 @@ const PlaceForm = ({action, formType='simple', recordID, onClose, ...props}) => 
                 otherNames.map((otherName, idx) => (
                   <Row key={idx} gutter={10} style={{marginBottom: '10px'}}>
                     <Col span={22}>
-                      <Input
-                        name={`other_names[${idx}].place_name`}
-                        placeholder={'Place'}
-                        style={{width: '100%'}}
-                        disabled={action === 'view'}
-                        className={style.FormInput}
-                      />
+                      <FormItem name={`other_names[${idx}].place_name`}>
+                        <Input
+                          name={`other_names[${idx}].place_name`}
+                          placeholder={'Place'}
+                          style={{width: '100%'}}
+                          disabled={action === 'view'}
+                          className={style.FormInput}
+                        />
+                      </FormItem>
                     </Col>
                     <Col span={2}>
                       { action !== 'view' ?
                         <Button
                           type={'secondary'}
                           onClick={() => {
-                            if (idx > 0) {
-                              arrayHelpers.remove(idx)
-                            }
+                            arrayHelpers.remove(idx)
                           }}
                         >
                           <CloseOutlined/>
@@ -106,7 +115,7 @@ const PlaceForm = ({action, formType='simple', recordID, onClose, ...props}) => 
             </React.Fragment>
           )}
         />
-      </FormItem>
+      </React.Fragment>
     )
   };
 
@@ -138,7 +147,7 @@ const PlaceForm = ({action, formType='simple', recordID, onClose, ...props}) => 
           <Row gutter={10}>
             <Col span={24}>
               <FormItem name={'notes'} label="Notes">
-                <Input.TextArea rows={4} name={'notes'} disabled={action === 'view'} className={style.FormInput}/>
+                <FormattedTextArea name={'notes'} disabled={action === 'view'} rows={4} />
               </FormItem>
             </Col>
           </Row>
@@ -154,6 +163,16 @@ const PlaceForm = ({action, formType='simple', recordID, onClose, ...props}) => 
               {renderOtherNames(values)}
             </Col>
           </Row>
+          {
+            initialData.hasOwnProperty('is_public') &&
+            <Row gutter={10}>
+              <Col span={24}>
+                <FormItem name={'is_public'} label="Visibility">
+                  <Switch name={'is_public'} checkedChildren="Public" unCheckedChildren="Private" defaultChecked />
+                </FormItem>
+              </Col>
+            </Row>
+          }
           {
             action !== 'view' &&
             <Button

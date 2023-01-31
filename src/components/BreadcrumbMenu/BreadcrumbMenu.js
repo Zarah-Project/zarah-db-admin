@@ -9,7 +9,7 @@ const breadcrumbs = {
   '/documents/create': ['Documents', 'Create'],
   '/events': ['Chronology'],
   '/people': ['People'],
-  '/organisations': ['Organisations'],
+  '/organisations': ['Organizations'],
   '/places': ['Places']
 };
 
