@@ -17,7 +17,8 @@ const PeopleForm = ({action, formType='simple', recordID, onClose, ...props}) =>
     other_names: [{
       first_name: '',
       last_name: ''
-    }]
+    }],
+    is_public: false
   });
 
   useEffect(() => {
