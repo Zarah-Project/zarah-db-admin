@@ -10,7 +10,8 @@ const EventForm = ({action, formType='simple', recordID, onClose, ...props}) => 
   const [loading, setLoading] = useState(false);
   const [initialData, setInitialData] = useState({
     date_from: '',
-    event: ''
+    event: '',
+    is_public: false
   });
 
   useEffect(() => {

@@ -16,7 +16,8 @@ const PlaceForm = ({action, formType='simple', recordID, onClose, ...props}) => 
     notes: '',
     other_names: [{
       place_name: '',
-    }]
+    }],
+    is_public: false
   });
 
   useEffect(() => {

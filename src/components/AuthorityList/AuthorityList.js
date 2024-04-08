@@ -102,7 +102,7 @@ const AuthorityList = ({formType, columns, dataKey, serviceClass, ...props}) => 
   };
 
   const renderVisibility = (row) => {
-    return row.is_public_user ?
+    return row.is_public ?
       <Badge count={'Public'} style={{ backgroundColor: '#36771a' }}/> :
       <Badge count={'Private'} style={{ backgroundColor: '#ffd100' }}/>
   };

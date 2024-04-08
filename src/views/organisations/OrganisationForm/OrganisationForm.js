@@ -19,7 +19,8 @@ const OrganisationForm = ({action, formType='simple', recordID, onClose, ...prop
     organisation_gendered_membership: undefined,
     organisation_form_text: '',
     organisation_form_scale_text: '',
-    organisation_gendered_membership_text: ''
+    organisation_gendered_membership_text: '',
+    is_public: false
   });
 
   useEffect(() => {
