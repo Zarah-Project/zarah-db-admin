@@ -46,6 +46,7 @@ const decodeValues = (values) => {
     const zoteroData = JSON.parse(formValues['zotero_data']);
     formValues['zotero_language'] = zoteroData.hasOwnProperty('language') ? zoteroData['language'] : '';
     formValues['zotero_date'] = zoteroData.hasOwnProperty('language') ? zoteroData['date'] : '';
+    formValues['zotero_publication_title'] = zoteroData.hasOwnProperty('publicationTitle') ? zoteroData['publicationTitle'] : '';
 
     formValues['zotero_archive'] = zoteroData.hasOwnProperty('archive') ? zoteroData['archive'] : '';
     formValues['zotero_loc_archive'] = zoteroData.hasOwnProperty('archiveLocation') ? zoteroData['archiveLocation'] : '';
